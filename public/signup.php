@@ -149,18 +149,11 @@ else{  $_SESSION['failure'] = "Email is invalid";}
 </div>
 
   <div class="form_box">
-  <input type="submit" name="signup" value="Submit" onclick="myFunction()" >
+  <input type="submit" name="signup" value="Submit" >
   <input type="submit" name="cancel" value="Cancel"></br>
 </div>
 
 </form>
-<a href=signin.php>Sign in</a>
-
-<div id="myDIV">
-  <input type="text" placeholder="otp" name="otps" autocomplete="on" required>
-  <input type="submit" name="code" value="Submit" >
-
-</div>
 </center>
 
 <footer class="footer">
@@ -225,19 +218,6 @@ else{  $_SESSION['failure'] = "Email is invalid";}
       </div>
     </div>
 </div>
-<script>
-var x = document.getElementById("myDIV");
-x.style.display = "none";
-
-
-function myFunction() {
-  var x = document.getElementById("myDIV");
-  if (x.style.display === "none") {
-    x.style.display = "block";
-  } else {
-    x.style.display = "none";
-  }
-}</script>
 <script src="js/jquery-3.1.1.min.js" type="text/javascript"></script>
 <script src="js/plugins.js" type="text/javascript"></script>
   <script src="js/common.js" type="text/javascript"></script>

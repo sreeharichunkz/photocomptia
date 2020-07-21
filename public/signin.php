@@ -121,7 +121,6 @@ if(isset($_POST['signin'])){
 
   </div>
 </form>
-<a href="signup.php">Signup</a>
 </center>
 
 <footer class="footer">
