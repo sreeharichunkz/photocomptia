@@ -6,7 +6,7 @@ session_start();
 if(isset($_POST['signin'])){
     if(isset($_POST['uname']) && strlen($_POST['uname']) > 0 && isset($_POST['psw']) && strlen($_POST['psw']) > 0 ){
    require_once('pdo.php');
-   $stmt = $pdo->prepare('SELECT * FROM signup WHERE name = :em AND password = :pw');
+   $stmt = $pdo->prepare('SELECT * FROM signups WHERE name = :em AND password = :pw');
 
    $stmt->execute(array( ':em' => $_POST['uname'], ':pw' => $_POST['psw']));
 

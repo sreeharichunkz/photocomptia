@@ -20,7 +20,15 @@
           if(is_numeric($mbno)){
             if(strpos( $_POST['email'], '@') == true){
             require_once('pdo.php');
-             $stmt = $pdo->prepare('INSERT INTO signup
+
+            $stmp = $pdo->prepare('SELECT * FROM signup WHERE email = :em || mobno = :mb');
+
+            $stmp->execute(array( ':em' => $email, ':mb' => $mbno ));
+
+            $rop = $stmp->fetch(PDO::FETCH_ASSOC);
+if($rop==false){
+
+             $stmt = $pdo->prepare('INSERT INTO signups
               (name,password, mobno, email, location) VALUES ( :uname, :pwd, :mb, :em, :loc)');
               $stmt->execute(array(
                       ':uname' => $uname,
@@ -38,6 +46,11 @@
    $_SESSION['pwd']=$pwd;
    $_SESSION['mbno']=$mbno;
   $_SESSION['email']=$email;
+}
+else{
+  $_SESSION['failure'] = "Email or phoneNumber is already is registered";
+}
+
 
 }
 else{  $_SESSION['failure'] = "Email is invalid";}
