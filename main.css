@@ -39,12 +39,11 @@ i {
 .form_box{
   margin-bottom: 10px;
   margin-left: auto;
-  margin-top: 10px;
-  top:100px
+
+  top:10px
 }
 .box_form{
 
-margin-top: 150px;
 }
 .form_box_email{
     margin-left: 30px;

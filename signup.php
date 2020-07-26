@@ -12,7 +12,7 @@
       if(isset($_POST['uname']) && strlen($_POST['uname']) > 0 && isset($_POST['psw']) && strlen($_POST['psw']) > 0 ){
        $uname=$_POST['uname'];
           $pwd=$_POST['psw'];
-          $mbno=$_POST['mbno'];
+          $mbno=$_REQUEST['mbno'];
           $email=$_POST['email'];
           $location=$_POST['location'];
 
@@ -23,7 +23,7 @@
 
             $stmp = $pdo->prepare('SELECT * FROM signup WHERE email = :em || mobno = :mb');
 
-            $stmp->execute(array( ':em' => $email, ':mb' => $mbno ));
+            $stmp->execute(array( ':em' => $email, ':mb' => $_REQUEST['mbno'] ));
 
             $rop = $stmp->fetch(PDO::FETCH_ASSOC);
 if($rop==false){
@@ -33,7 +33,7 @@ if($rop==false){
               $stmt->execute(array(
                       ':uname' => $uname,
                       ':pwd' => $pwd,
-                      ':mb' => $mbno,
+                      ':mb' => $_REQUEST['mbno'],
                       ':em' => $email,
                       ':loc' => $location)
                   );
@@ -122,7 +122,7 @@ else{  $_SESSION['failure'] = "Email is invalid";}
     <!-- Header -->
 
 
-
+<center> <h1></br></br>Sign up</h1></center>
 
 
     <?php
@@ -146,10 +146,7 @@ else{  $_SESSION['failure'] = "Email is invalid";}
   <label for="psw"><b>Password</b></label>
   <input type="password" placeholder="Enter Password" name="psw" autocomplete="on"required></br>
 </div>
-  <div class="form_box">
-  <label for="mbno"><b>Mobile no</b></label>
-  <input type="text" placeholder="Mobile no" name="mbno" autocomplete="on" required></br>
-</div>
+
   <div class="form_box">
   <label for="email"><b>Email</b></label>
 
@@ -169,11 +166,7 @@ else{  $_SESSION['failure'] = "Email is invalid";}
 </form>
 <a href=signin.php>Sign in</a>
 
-<div id="myDIV">
-  <input type="text" placeholder="otp" name="otps" autocomplete="on" required>
-  <input type="submit" name="code" value="Submit" >
 
-</div>
 </center>
 
 <footer class="footer">
@@ -238,19 +231,7 @@ else{  $_SESSION['failure'] = "Email is invalid";}
       </div>
     </div>
 </div>
-<script>
-var x = document.getElementById("myDIV");
-x.style.display = "none";
 
-
-function myFunction() {
-  var x = document.getElementById("myDIV");
-  if (x.style.display === "none") {
-    x.style.display = "block";
-  } else {
-    x.style.display = "none";
-  }
-}</script>
 <script src="js/jquery-3.1.1.min.js" type="text/javascript"></script>
 <script src="js/plugins.js" type="text/javascript"></script>
   <script src="js/common.js" type="text/javascript"></script>

@@ -92,7 +92,7 @@ if(isset($_POST['signin'])){
    </div>
  </nav>
 
-    <center> <h1>Sign In</h1></center>
+    <center> <h1></br></br></br>Sign In</h1></center>
 
      <?php
 
