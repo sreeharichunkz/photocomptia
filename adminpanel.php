@@ -33,6 +33,8 @@ die('Not logged in');
 
         echo('<table border="1">'."\n");
         echo "<tr><td>";
+        echo("<b>User_id</b>");
+        echo("</td><td>");
         echo("<b>Username</b>");
         echo("</td><td>");
         echo("<b>Password</b>");
@@ -40,9 +42,16 @@ die('Not logged in');
         echo("<b>Mobile no</b>");
         echo("</td><td>");
         echo("<b>Email</b>");
-  $stmt = $pdo->query("SELECT * FROM signup");
+        echo("</td><td>");
+        echo("<b>Location</b>");
+        echo("</td><td>");
+        echo("<b>password update</b>");
+  $stmt = $pdo->query("SELECT * FROM signups");
   while ( $row = $stmt->fetch(PDO::FETCH_ASSOC) ) {
+
     echo ("<tr><td>");
+    echo(htmlentities($row['personid']));
+    echo("</td><td>");
       echo(htmlentities($row['name']));
       echo("</td><td>");
       echo(htmlentities($row['password']));
@@ -53,6 +62,9 @@ die('Not logged in');
       echo("</td><td>");
       echo(htmlentities($row['location']));
       echo("</td><td>");
+    echo ('<a href="editpassword.php?personid='.$row['personid'].'">Edit Password</a> ');
+
+
   }
   ?>
   </table>
