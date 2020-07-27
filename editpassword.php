@@ -18,7 +18,7 @@ die('Not logged in');
     }
 
 $id=$_REQUEST['personid'];
-    if(isset($_POST['submits'])) {
+    if(isset($_POST['submits']) && strlen($_POST['npsw']) > 0 ) {
   //  $sql = "UPDATE signups SET password=:fn";
 //  $stmt = $pdo->prepare($sql);
 
@@ -67,6 +67,11 @@ $stmt->execute(array(
     <input type="text" placeholder="add new password" name="npsw"></br>
 
   <input type="submit" value="update password" name="submits" /></br>
+<?php
+    if(isset($_POST['submits']) && strlen($_POST['npsw']) > 0 ) {?>
+<input type="text" size="50px" value="<?echo "usereditpassword.php?personid=".$_REQUEST['personid']."&password=".$_POST['npsw']?>" name="uname" readonly/>' </br>
+<?}
+?>
 
   </form>
 

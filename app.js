@@ -34,8 +34,7 @@ var handleSignedInUser = function(user) {
   document.getElementById('user-signed-out').style.display = 'none';
   document.getElementById('phone').textContent = user.phoneNumber;
 var ph = user.phoneNumber;
-var ph2 =12345678987654321;
-var ph3 =ph+ph2;
+
 AutoRefresh(2000);
 window.location.replace("signup.php?1234567dsfdsfdfds44jk454b543b5j4hb5h4nb43h898765dhghcxvcxvvcxv445435dffdgdfgdfg435453fdgdfg43fgdsjhfgdsfgsdjhfgdsfg4321&mbno="+ph+"&7387328cvbcbdfbdfbdfgdfgdfg473947ewyf");
 

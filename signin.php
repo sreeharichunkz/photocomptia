@@ -107,6 +107,10 @@ if(isset($_POST['signin'])){
      ?>
 
 <center>
+<?  if ( isset($_SESSION['success']) ) {
+          echo '<p style="color:green">'.$_SESSION['success']."</p>\n";
+          unset($_SESSION['sucess']);
+      }?>
   <form method="post">
     <div class="signin_box">
     <label for="uname"><b>Username</b></label>
