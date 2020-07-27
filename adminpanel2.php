@@ -40,7 +40,7 @@ die('<a href=admin.php>signup to continue</a>');
         echo("<b>Name</b>");
         echo("</td><td>");
         echo("<b>Subject</b>");
-          echo("</td><td>");
+        echo("</td><td>");
         echo("<b>Message</b>");
         echo("</td><td>");
         echo("<b>Mobile_no</b>");

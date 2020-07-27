@@ -4,6 +4,9 @@ session_start();
   ini_set('display_errors', 1);
   ini_set('display_startup_errors', 1);
   error_reporting(E_ALL);
+  if (!isset($_SESSION['adminname']) || strlen($_SESSION['adminname']) < 1 ) {
+  die('<a href=admin.php>signup to continue</a>');
+  }
  ?>
 
 <?php foreach ($posts as $post): ?>
@@ -178,11 +181,6 @@ echo $row['added'];
   <input type="submit" name="submit6"></br>
 
 </form>
-<?
-$pql = "SELECT * FROM posts
-      WHERE post_id = $id ";
-      $rp = mysqli_query($conn, $pql);
-      $row = mysqli_fetch_array($rp) ;
-      echo $row['added'];?>
+
 
 </body>

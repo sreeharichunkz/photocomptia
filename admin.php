@@ -23,7 +23,7 @@ if(isset($_POST['signin'])){
 
    // Redirect the browser to index.php
    $_SESSION['success'] = "welcome ".$_SESSION['name'];
-   header("Location: adminpanel.php");
+   header("Location: navadmin.php");
 
    return;
         }

@@ -5,7 +5,8 @@ error_reporting(E_ALL);
 session_start();
  require_once('pdo.php');
 $id=$_REQUEST['personid'];
- if(isset($_POST['submits']) && strlen($_POST['npsw']) > 0 && $_POST['npsw'] == $_POST['npsw2'] ) {
+if(isset($_POST['submits']))
+{ if(isset($_POST['submits']) && strlen($_POST['npsw']) > 0 && $_POST['npsw'] == $_POST['npsw2'] ) {
 //  $sql = "UPDATE signups SET password=:fn";
 //  $stmt = $pdo->prepare($sql);
 
@@ -19,9 +20,9 @@ $stmt->execute(array(
  header("Location: signin.php");
    $_SESSION['success']="Your password is changed successfully";
 }
-else{
-  $_SESSION['error']="Enter valid and same password in both the fields";
-}
+else {
+    $_SESSION['error']="Enter valid and same password in both the fields";
+}}
 $pass=$_REQUEST['password'];
 
    $stmt = $pdo->prepare('SELECT * FROM signups WHERE personid = :em');
@@ -85,9 +86,10 @@ $pass=$_REQUEST['password'];
 <? if($row['password'] == $pass){?>
   <div class="edpas">
     <center>
-    <?  if ( isset($_SESSION['error']) ) {
-            echo '<p style="color:red">'.$_SESSION['error']."</p>\n";
-            unset($_SESSION['error']);
+    <?     if ( isset($_SESSION['error']) ) {
+           echo('<p style="color: red;">'.htmlentities($_SESSION['error'])."</p>\n");
+           unset($_SESSION['error']);
+
         }?>
       <h2>Dear <? echo $row['name']  ?> update your new password</h2>
   <form method="POST">
