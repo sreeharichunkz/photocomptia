@@ -7,6 +7,10 @@
 
              require_once('pdo.php');
     session_start();
+
+
+  if(isset($_REQUEST['mbno'])){
+
   if(isset($_POST['signup'])){
 
       if(isset($_POST['uname']) && strlen($_POST['uname']) > 0 && isset($_POST['psw']) && strlen($_POST['psw']) > 0 ){
@@ -235,6 +239,8 @@ else{  $_SESSION['failure'] = "Email is invalid";}
 <script src="js/jquery-3.1.1.min.js" type="text/javascript"></script>
 <script src="js/plugins.js" type="text/javascript"></script>
   <script src="js/common.js" type="text/javascript"></script>
-
+<?}
+else{
+  header("location: index111.html");}?>
 </body>
 <html>
