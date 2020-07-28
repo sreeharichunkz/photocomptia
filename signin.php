@@ -20,7 +20,7 @@ if(isset($_POST['signin'])){
 
    // Redirect the browser to index.php
 
-   header("Location: contact.php");
+   header("Location: index.php");
 
    return;
         }

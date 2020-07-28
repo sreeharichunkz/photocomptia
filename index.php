@@ -1,3 +1,13 @@
+<?php
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
+session_start();
+require_once('pdo.php');
+ ?>
+
+
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -50,8 +60,12 @@
 
 		</div>
 		<div class="hamburger__login">
-			<a class="link_login" href="signin.php"><b>LOGIN</b></a>
-
+      <?  if( isset($_SESSION['personid']) ) { ?>
+			<a class="link_login" href="signin.php"><b>LOGOUT</b></a><?
+} else{
+?>
+	<a class="link_login" href="signin.php"><b>LOGIN</b></a>
+<?}?>
         </div>
 	</nav>
 	<!-- /Header -->
