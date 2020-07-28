@@ -241,6 +241,6 @@ else{  $_SESSION['failure'] = "Email is invalid";}
   <script src="js/common.js" type="text/javascript"></script>
 <?}
 else{
-  header("location: index111.html");}?>
+  header("location: signupotp.html");}?>
 </body>
 <html>
