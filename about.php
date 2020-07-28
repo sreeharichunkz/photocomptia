@@ -1,3 +1,13 @@
+<?php
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
+session_start();
+require_once('pdo.php');
+ ?>
+
+
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -49,9 +59,13 @@
 			<span class="hamburger__text">Menu</span>
 
 		</div>
-		<div class="hamburger__login">
-			<a href="login.php"><b>Login</b></a>
-
+    <div class="hamburger__login">
+      <?  if( isset($_SESSION['personid']) ) { ?>
+			<a class="link_login" href="signin.php"><b>LOGOUT</b></a><?
+} else{
+?>
+	<a class="link_login" href="signin.php"><b>LOGIN</b></a>
+<?}?>
         </div>
 	</nav>
 	<!-- /Header -->
@@ -104,16 +118,16 @@
 					</li>
 
 					<li>
-						<a href="blog_single_image.html"> Current Events</a>
+						<a href="photoreg.php"> Current Events</a>
 					</li>
 					<li>
-					    <a href="event_gallery.html">Event Gallery </a>
+					    <a href="contest_page.php">Event Gallery </a>
 				    </li>
 		   		<!--	<li>
 					    <a href="blog.html">Our Services</i></a>
 				    </li>    -->
-					<li><a href="contact.html">Contact Us</a></li>
-					<li><a href="signup.php">Signup/login</a></li>
+					<li><a href="contact.php">Contact Us</a></li>
+
 				<!--    <li>
 					    <a href="#">Socials <i class="fa fa-angle-down" aria-hidden="true"></i></a>
 					    <ul class="dl-submenu">
