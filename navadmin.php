@@ -22,7 +22,7 @@ die('<a href=admin.php>signup to continue</a>');
 
 <a href="adminpanel2.php">Message from User</a></br>
 <a href="admin_like.php">Like Editing</a></br>
-
+<a href="photoreg.php">contest registrations</a></br>
 
 
 
