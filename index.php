@@ -654,7 +654,7 @@ require_once('pdo.php');
 					</li>
 
 					<li>
-						<a href="next_contest.php"> Current Events</a>
+						<a href="next_context.php"> Current Events</a>
 					</li>
 					<li>
 					    <a href="contest_page.php">Event Gallery </a>

@@ -138,7 +138,9 @@ die('<a href=signup.php>signup to continue</a>');
         </form>
       </div>
     </div>
+  
   </section>
+
   <!-- /Newsletter -->
 
   <footer class="footer">

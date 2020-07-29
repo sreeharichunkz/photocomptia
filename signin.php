@@ -118,7 +118,7 @@ if(isset($_POST['signin'])){
 </div>
     <div class="signin_box">
     <label for="psw"><b>Password</b></label>
-    <input type="password" placeholder="Enter Password" name="psw" required>
+    <input type="text" placeholder="Enter Password" name="psw" required>
 </div>
     <button type="submit" name="signin" >Login</button>
       <button type="button" class="cancelbtn">Cancel</button>
