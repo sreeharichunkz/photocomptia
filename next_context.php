@@ -5,6 +5,9 @@ ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
 
 session_start();
+
+require('config.php');
+require('razorpay-php/Razorpay.php');
 require_once('pdo.php');
 
 if(isset($_POST['register'])){
@@ -26,16 +29,75 @@ if(isset($_POST['register'])){
 
                      $_SESSION['success']="Record added";
                      header("Location: signin.php");
-
-
 }
 }
+// Create the Razorpay Order
+use Razorpay\Api\Api;
+
+$api = new Api($keyId, $keySecret);
+//
+// We create an razorpay order using orders api
+// Docs: https://docs.razorpay.com/docs/orders
+//
+$orderData = [
+    'receipt'         => 3456,
+    'amount'          => 1 * 100, // 2000 rupees in paise
+    'currency'        => 'INR',
+    'payment_capture' => 1 // auto capture
+];
+
+$razorpayOrder = $api->order->create($orderData);
+
+$razorpayOrderId = $razorpayOrder['id'];
+
+$_SESSION['razorpay_order_id'] = $razorpayOrderId;
+
+$displayAmount = $amount = $orderData['amount'];
+
+if ($displayCurrency !== 'INR')
+{
+    $url = "https://api.fixer.io/latest?symbols=$displayCurrency&base=INR";
+    $exchange = json_decode(file_get_contents($url), true);
+
+    $displayAmount = $exchange['rates'][$displayCurrency] * $amount / 100;
+}
+
+$checkout = 'automatic';
+
+if (isset($_GET['checkout']) and in_array($_GET['checkout'], ['automatic', 'manual'], true))
+{
+    $checkout = $_GET['checkout'];
+}
+
+$data = [
+    "key"               => $keyId,
+    "amount"            => $amount,
+    "name"              => "Photocomptia",
+    "description"       => "Join our contest",
+    "image"             => "logo1.png",
+    "prefill"           => [
+    "name"              => "Daft Punk",
+    "email"             => $_SESSION['email'] ,
+    "contact"           => $_SESSION['mobno'],
+    ],
+    "notes"             => [
+    "address"           => "Hello World",
+    "merchant_order_id" => "12312321",
+    ],
+    "theme"             => [
+    "color"             => "#F37254"
+    ],
+    "order_id"          => $razorpayOrderId,
+];
+
+if ($displayCurrency !== 'INR')
+{
+    $data['display_currency']  = $displayCurrency;
+    $data['display_amount']    = $displayAmount;
+}
+
+$json = json_encode($data);
 ?>
-
-
-
-
-
 
 <!DOCTYPE html>
 <html lang="en">
@@ -158,13 +220,22 @@ if(isset($_POST['register'])){
 							    <label for="message" class="label">Google Drive/Photos Link of photo and payment proof which contain transation ID *</label>
 						        <textarea class="form-control input" id="message" rows="1" name="photolink" required></textarea>
 							</div>
+              <center>
 					        <div class="btn-block">
 							    <button type="submit" name="register" class="btn">Register</button>
 							</div>
+            </center>
 				        </div>
 			        </div>
+
                 </form>
-                <!-- /Comment Form -->
+<center>
+  <?
+
+
+                require("checkout/{$checkout}.php");
+                ?>
+                <!-- /Comment Form --></center>
 	        </div>
 	        <!-- /Comments -->
 		</div>
