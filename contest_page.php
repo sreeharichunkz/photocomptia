@@ -38,7 +38,7 @@ die('<a href=signup.php>signup to continue</a>');
 
 <nav class="navbar animated slideInDown">
       <div class="navbar-left">
-          <a href="index.html">
+          <a href="index.php">
               <img class="logotype" src="img/logo1.png" alt="logo">
     </a>
       </div>
@@ -48,10 +48,14 @@ die('<a href=signup.php>signup to continue</a>');
           <span class="hamburger__line"></span>
     <span class="hamburger__text">Menu</span>
       </div>
-
     <div class="hamburger__login">
-      <a href="login.php"><b>Login</b></a>
-    </div>
+      <?  if( isset($_SESSION['personid']) ) { ?>
+      <a class="link_login" href="userlogout.php"><b>LOGOUT</b></a><?
+} else{
+?>
+  <a class="link_login" href="signin.php"><b>LOGIN</b></a>
+<?}?>
+        </div>
 </nav>
 
 
@@ -165,7 +169,7 @@ die('<a href=signup.php>signup to continue</a>');
       <div class="popup-inner">
             <div class="dl-menu__wrap dl-menuwrapper">
                 <ul class="dl-menu dl-menuopen">
-          <li>	<a href="index.html">Home</a>
+          <li>	<a href="index.php">Home</a>
         </li>
         <li>
 
@@ -175,10 +179,10 @@ die('<a href=signup.php>signup to continue</a>');
         </li>
 
         <li>
-          <a href="blog_single_image.html"> Current Events</a>
+          <a href="next_contest.php"> Current Events</a>
         </li>
         <li>
-          <a href="blog.html">Event Gallery</a>
+          <a href="contest_page.php">Event Gallery</a>
         </li>
          <!--	<li>
           <a href="blog.html">Our Services</i></a>

@@ -7,7 +7,41 @@
   <title>Photocomptia</title>
 
 <!-- Meta Data -->
+<style>
+body {
+  margin-top: 150px;
+  background-color: black;
+}
+h3{  color:white;
+  font-family: "Poppins", sans-serif;
+  font-weight: 500;
+  line-height: 1.0;
+  font-size: 1.8rem;
+  margin-top: 30px;
+  margin-bottom: 24px;
+}
+#container {
+  max-width: 600px;
+  margin: 0 auto;
+  text-align: center;
+}
 
+.clearfix {
+  clear: both;
+}
+
+.hidden {
+  display: none;
+}
+
+#user-info {
+  border: none;
+  clear: both;
+  margin: 0 auto 20px;
+  max-width: 400px;
+  padding: 10px;
+  text-align: left;
+}</style>
 <!-- Modernizr -->
 <script src="js/modernizr.custom.js" type="text/javascript"></script>
 	<script src="https://www.gstatic.com/firebasejs/5.0.4/firebase.js"></script>
@@ -28,6 +62,13 @@
 
 </head>
 <body>
+
+  <div class="navbar-left">
+      <a href="index.php">
+          <img class="logotype" src="img/logo1.png" alt="logo">
+</a>
+<h1 style="font-color:white;">Sign up</h1>
+</div>
     <div id="container">
       <h3>Authentication via Gmail/Phone number</h3>
       <div id="loading">Loading...</div>

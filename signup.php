@@ -1,5 +1,3 @@
-
-
   <?php
   ini_set('display_errors', 1);
   ini_set('display_startup_errors', 1);
@@ -110,7 +108,7 @@ else{  $_SESSION['failure'] = "Email is invalid";}
 
   <nav class="navbar animated slideInDown">
         <div class="navbar-left">
-            <a href="index.html">
+            <a href="index.php">
                 <img class="logotype" src="img/logo1.png" alt="logo">
       </a>
       <h1 style="font-color:white;">Sign up</h1>
@@ -201,7 +199,7 @@ else{  $_SESSION['failure'] = "Email is invalid";}
     <div class="popup-inner">
           <div class="dl-menu__wrap dl-menuwrapper">
               <ul class="dl-menu dl-menuopen">
-        <li>	<a href="index.html">Home</a>
+        <li>	<a href="index.php">Home</a>
       </li>
       <li>
 
@@ -211,10 +209,10 @@ else{  $_SESSION['failure'] = "Email is invalid";}
       </li>
 
       <li>
-        <a href="blog_single_image.html"> Current Events</a>
+        <a href="next_contest.php"> Current Events</a>
       </li>
       <li>
-        <a href="blog.html">Event Gallery</a>
+        <a href="contest_page.html">Event Gallery</a>
       </li>
        <!--	<li>
         <a href="blog.html">Our Services</i></a>

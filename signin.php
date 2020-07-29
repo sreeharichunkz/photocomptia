@@ -79,7 +79,7 @@ if(isset($_POST['signin'])){
 
  <nav class="navbar animated slideInDown">
        <div class="navbar-left">
-           <a href="index.html">
+           <a href="index.php">
                <img class="logotype" src="img/logo1.png" alt="logo">
      </a>
      <h1 style="font-color:white;">Sign in</h1>
@@ -160,16 +160,16 @@ if(isset($_POST['signin'])){
       </li>
       <li>
 
-          <li><a href="about.html">About Us</a></li>
+          <li><a href="about.php">About Us</a></li>
       <!--    <li><a href="about_onescreen.html">Our Team</a></li>    -->
 
       </li>
 
       <li>
-        <a href="blog_single_image.html"> Current Events</a>
+        <a href="next_contest.php"> Current Events</a>
       </li>
       <li>
-        <a href="blog.html">Event Gallery</a>
+        <a href="contest_page.html">Event Gallery</a>
       </li>
        <!--	<li>
         <a href="blog.html">Our Services</i></a>

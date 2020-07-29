@@ -72,7 +72,7 @@ $pass=$_REQUEST['password'];
 </div>
 <nav class="navbar animated slideInDown">
       <div class="navbar-left">
-          <a href="index.html">
+          <a href="index.php">
               <img class="logotype" src="img/logo1.png" alt="logo">
     </a>
   </nav>

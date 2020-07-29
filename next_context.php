@@ -88,9 +88,13 @@ if(isset($_POST['register'])){
 			<span class="hamburger__text">Menu</span>
 
 		</div>
-		<div class="hamburger__login">
-			<a class="link_login" href="signin.php"><b>LOGIN</b></a>
-
+    <div class="hamburger__login">
+      <?  if( isset($_SESSION['personid']) ) { ?>
+      <a class="link_login" href="userlogout.php"><b>LOGOUT</b></a><?
+} else{
+?>
+  <a class="link_login" href="signin.php"><b>LOGIN</b></a>
+<?}?>
         </div>
 	</nav>
     <!-- /Header -->

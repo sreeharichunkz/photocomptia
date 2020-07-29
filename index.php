@@ -48,7 +48,7 @@ require_once('pdo.php');
     <!-- Header -->
 	<nav class="navbar animated slideInDown">
         <div class="navbar-left">
-            <a href="index.html">
+            <a href="index.php">
                 <img class="logotype" src="img/logo1.png" alt="logo">
 			</a>
         </div>
@@ -61,7 +61,7 @@ require_once('pdo.php');
 		</div>
 		<div class="hamburger__login">
       <?  if( isset($_SESSION['personid']) ) { ?>
-			<a class="link_login" href="signin.php"><b>LOGOUT</b></a><?
+			<a class="link_login" href="userlogout.php"><b>LOGOUT</b></a><?
 } else{
 ?>
 	<a class="link_login" href="signin.php"><b>LOGIN</b></a>
@@ -644,7 +644,7 @@ require_once('pdo.php');
             <div class="dl-menu__wrap dl-menuwrapper">
                 <ul class="dl-menu dl-menuopen">
 					<li>
-					    <a href="index.html">Home</a>
+					    <a href="index.php">Home</a>
 				    </li>
 				    <li>
 
@@ -654,7 +654,7 @@ require_once('pdo.php');
 					</li>
 
 					<li>
-						<a href="photoreg.php"> Current Events</a>
+						<a href="next_contest.php"> Current Events</a>
 					</li>
 					<li>
 					    <a href="contest_page.php">Event Gallery </a>
