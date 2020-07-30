@@ -42,6 +42,8 @@ die('<a href=admin.php>signup to continue</a>');
         echo("<b>Mobile_no</b>");
         echo("</td><td>");
         echo("<b>Email</b>");
+        echo("</td><td>");
+        echo("<b>Payment</b>");
   $stmt = $pdo->query("SELECT * FROM photoreg");
   while ( $row = $stmt->fetch(PDO::FETCH_ASSOC) ) {
     echo ("<tr><td>");
@@ -54,6 +56,8 @@ die('<a href=admin.php>signup to continue</a>');
       echo(htmlentities($row['mobno']));
       echo("</td><td>");
       echo(htmlentities($row['email']));
+      echo("</td><td>");
+      echo(htmlentities($row['payment']));
   }
   ?>
   </table>

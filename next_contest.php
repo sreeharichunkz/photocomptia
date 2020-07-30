@@ -19,8 +19,9 @@ if(isset($_POST['register'])){
          $name=$_SESSION['username'];
 
                     $stmt = $pdo->prepare('INSERT INTO photoreg
-                     (name, mobno, email,photolink) VALUES ( :uname, :mb, :em, :link)');
+                     (personid, name, mobno, email,photolink) VALUES ( :id, :uname, :mb, :em, :link)');
                      $stmt->execute(array(
+                            ':id' => $_SESSION['personid'],
                              ':uname' => $name,
                              ':mb' => $mbno,
                              ':em' => $email,

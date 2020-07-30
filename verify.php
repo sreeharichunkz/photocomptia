@@ -1,7 +1,10 @@
 <?php
-
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
 require('config.php');
 
+   require_once('pdo.php');
 session_start();
 
 require('razorpay-php/Razorpay.php');
@@ -33,6 +36,8 @@ if (empty($_POST['razorpay_payment_id']) === false)
     {
         $success = false;
         $error = 'Razorpay Error : ' . $e->getMessage();
+
+
     }
 }
 
@@ -40,6 +45,14 @@ if ($success === true)
 {
     $html = "<p>Your payment was successful</p>
              <p>Payment ID: {$_POST['razorpay_payment_id']}</p>";
+
+             $sql = "UPDATE photoreg SET payment = 'Done'
+                   WHERE personid = :yr ";
+             $stmt = $pdo->prepare($sql);
+             $stmt->execute(array(
+
+                 ':yr' => $_SESSION['personid'] ));
+
 }
 else
 {
