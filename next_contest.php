@@ -155,7 +155,7 @@ $json = json_encode($data);
       <a class="link_login" href="userlogout.php"><b>LOGOUT</b></a><?
 } else{
 ?>
-  <a class="link_login" href="signin.php"><b>LOGIN</b></a>
+  <a class="link_login" href="signin.php?page=next_contest.php"><b>LOGIN</b></a>
 <?}?>
         </div>
 	</nav>

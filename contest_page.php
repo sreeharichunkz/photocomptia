@@ -53,7 +53,7 @@ die('<a href=signup.php>signup to continue</a>');
       <a class="link_login" href="userlogout.php"><b>LOGOUT</b></a><?
 } else{
 ?>
-  <a class="link_login" href="signin.php"><b>LOGIN</b></a>
+  <a class="link_login" href="signin.php?page=contest_page.php"><b>LOGIN</b></a>
 <?}?>
         </div>
 </nav>
@@ -138,7 +138,7 @@ die('<a href=signup.php>signup to continue</a>');
         </form>
       </div>
     </div>
-  
+
   </section>
 
   <!-- /Newsletter -->

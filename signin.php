@@ -19,9 +19,13 @@ if(isset($_POST['signin'])){
    $_SESSION['personid'] = $row['personid'];
 
    // Redirect the browser to index.php
+if(isset($_REQUEST['page'])){
 
+   header("Location: ".$_REQUEST['page']);
+}
+else{
    header("Location: index.php");
-
+}
    return;
         }
         else {
@@ -169,7 +173,7 @@ if(isset($_POST['signin'])){
         <a href="next_contest.php"> Current Events</a>
       </li>
       <li>
-        <a href="contest_page.html">Event Gallery</a>
+        <a href="contest_page.php">Event Gallery</a>
       </li>
        <!--	<li>
         <a href="blog.html">Our Services</i></a>

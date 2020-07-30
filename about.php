@@ -61,10 +61,10 @@ require_once('pdo.php');
 		</div>
     <div class="hamburger__login">
       <?  if( isset($_SESSION['personid']) ) { ?>
-			<a class="link_login" href="signin.php"><b>LOGOUT</b></a><?
+			<a class="link_login" href="userlogout.php"><b>LOGOUT</b></a><?
 } else{
 ?>
-	<a class="link_login" href="signin.php"><b>LOGIN</b></a>
+	<a class="link_login" href="signin.php?page=about.php"><b>LOGIN</b></a>
 <?}?>
         </div>
 	</nav>
