@@ -47,11 +47,11 @@ if ($success === true)
              <p>Payment ID: {$_POST['razorpay_payment_id']}</p>";
 
              $sql = "UPDATE photoreg SET payment = 'Done'
-                   WHERE personid = :yr ";
+                   WHERE photo_id = :yr ";
              $stmt = $pdo->prepare($sql);
              $stmt->execute(array(
 
-                 ':yr' => $_SESSION['personid'] ));
+                 ':yr' => $_SESSION['photo_id'] ));
 
 }
 else

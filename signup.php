@@ -1,3 +1,5 @@
+
+
   <?php
   ini_set('display_errors', 1);
   ini_set('display_startup_errors', 1);
@@ -212,7 +214,7 @@ else{  $_SESSION['failure'] = "Email is invalid";}
         <a href="next_contest.php"> Current Events</a>
       </li>
       <li>
-        <a href="contest_page.html">Event Gallery</a>
+        <a href="contest_page.php">Event Gallery</a>
       </li>
        <!--	<li>
         <a href="blog.html">Our Services</i></a>
