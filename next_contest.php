@@ -32,6 +32,60 @@ if(isset($_POST['register'])){
                      header("Location: signin.php");
 }
 }
+do{
+$permitted_chars = '0123456789abcdefghijklmnopqrstuvwxyz';
+// Output: 54esmdr0qf
+$photo_id = substr(str_shuffle($permitted_chars), 0, 4);
+$stmp = $pdo->prepare('SELECT * FROM photoreg WHERE photo_id = :em');
+
+$stmp->execute(array( ':em' => $photo_id ));
+
+$rop = $stmp->fetch(PDO::FETCH_ASSOC);
+
+}while($rop== true);
+
+if(isset($_FILES['image'])){
+   $errors= array();
+   $file_name = $_FILES['image']['name'];
+   $file_size =$_FILES['image']['size'];
+   $file_tmp =$_FILES['image']['tmp_name'];
+   $file_type=$_FILES['image']['type'];
+   $file_ext=strtolower(end(explode('.',$_FILES['image']['name'])));
+ $name=$_SESSION['username'];
+   $extensions= array("jpeg","jpg","png");
+$imgname= $name.$photo_id.".".$file_ext;
+   if(in_array($file_ext,$extensions)=== false){
+      $errors[]="extension not allowed, please choose a JPEG or PNG file.";
+   }
+
+   if($file_size > 2097152){
+      $errors[]='File size must be excately 2 MB';
+   }
+
+
+   if(empty($errors)==true){
+
+     $mbno=$_SESSION['mobno'];
+     $email=$_SESSION['email'];
+     $name=$_SESSION['username'];
+      move_uploaded_file($file_tmp,"contest/".$imgname);
+      echo "Success";
+      $stmt = $pdo->prepare('INSERT INTO photoreg
+       (personid, name, mobno, email,photolink,photo_id) VALUES ( :id, :uname, :mb, :em, :link, :imgid)');
+       $stmt->execute(array(
+              ':id' => $_SESSION['personid'],
+               ':uname' => $name,
+               ':mb' => $mbno,
+               ':em' => $email,
+               ':imgid' => $photo_id,
+               ':link' => $imgname)
+           );
+
+
+   }else{
+      print_r($errors);
+   }
+}
 // Create the Razorpay Order
 use Razorpay\Api\Api;
 
@@ -78,7 +132,7 @@ $data = [
     "image"             => "logo1.png",
     "prefill"           => [
     "name"              => "Daft Punk",
-    "email"             => $_SESSION['email'] ,
+    "email"             => $_SESSION['email'],
     "contact"           => $_SESSION['mobno'],
     ],
     "notes"             => [
@@ -125,7 +179,7 @@ $json = json_encode($data);
 
     <!-- Styles -->
 	<link rel="stylesheet" type="text/css" href="style/style.css"/>
-
+<link rel="stylesheet" type="text/css" href="main.css"/>
 	<!-- Modernizr -->
 	<script src="js/modernizr.custom.js" type="text/javascript"></script>
 
@@ -213,28 +267,17 @@ $json = json_encode($data);
 
 		<h2>Register Here -</h2> <br> <br>
 		        <!-- Comment Form -->
-		        <form method="post" class="comment-form">
 
-                    <div class="row">
-				        <div class="col-md-12">
-					        <div class="form-group">
-							    <label for="message" class="label">Google Drive/Photos Link of photo and payment proof which contain transation ID *</label>
-						        <textarea class="form-control input" id="message" rows="1" name="photolink" required></textarea>
-							</div>
-              <center>
-					        <div class="btn-block">
-							    <button type="submit" name="register" class="btn">Register</button>
-							</div>
-            </center>
-				        </div>
-			        </div>
-
-                </form>
 <center>
+<div class="upload">
+  <form action="" method="POST" enctype="multipart/form-data">
+     <input type="file" name="image" />
+     <input type="submit"/>
+  </form></div></br></br>
+
+
   <?
-
-
-                require("checkout/{$checkout}.php");
+              require("checkout/{$checkout}.php");
                 ?>
                 <!-- /Comment Form --></center>
 	        </div>
