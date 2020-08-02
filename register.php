@@ -57,11 +57,11 @@ if(isset($_FILES['image'])){
    $extensions= array("jpeg","jpg","png");
 
    if(in_array($file_ext,$extensions)=== false){
-      $errors[]="extension not allowed, please choose a JPEG or PNG file.";
+      $_SESSION['failure']="extension not allowed, please choose a JPEG or PNG file.";
    }
 
    if($file_size > 2097152){
-      $errors[]='File size must be excately 2 MB';
+      $_SESSION['failure']='File size must be excately 2 MB';
    }
 
 
@@ -85,7 +85,7 @@ $imgname= $name.$photo_id.".".$file_ext;
 
 
    }else{
-      print_r($errors);
+      echo $errors;
    }
 }
 // Create the Razorpay Order
@@ -157,6 +157,9 @@ if ($displayCurrency !== 'INR')
 }
 
 $json = json_encode($data);
+
+
+
 ?>
 
 <!DOCTYPE html>
@@ -230,8 +233,14 @@ $json = json_encode($data);
 			<!-- /Post -->
 <div class="col-lg-12">
 <center>
+<?
 
-  <?if(isset($imgname)) {
+   if ( isset($_SESSION['failure']) ) {
+       echo('<p style="color: red;">'.htmlentities($_SESSION['failure'])."</p>\n");
+       unset($_SESSION['failure']);
+   }
+
+if(isset($imgname) && !isset($_SESSION['failure'])) {
            echo('<p style="color: green;">'.'File submitted successfully Pay to continue'."</p>\n");
           }?>
 
@@ -256,8 +265,15 @@ $json = json_encode($data);
     <center>
      <input type="file" name="image" /></br><center>
      <input type="checkbox"  required class="largerCheckbox"><h7> By clicking on this you will agree to our <a href="#">Terms and conditions.</a> </h7>
+ <?
+ $stmp = $pdo->prepare('SELECT * FROM photoreg WHERE photo_id = :id');
 
+ $stmp->execute(array( ':id' => $photo_id ));
 
+ $rop = $stmp->fetch(PDO::FETCH_ASSOC);
+ if(isset($imgname)) {?>
+
+<img src ='<?echo ""."contest/".$rop['photolink']."" ?>' width="100" height="100"> <?}?>
    </br></br> <input  type="submit"/>
 
  </form></center></br>
