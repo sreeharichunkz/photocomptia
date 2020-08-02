@@ -43,7 +43,9 @@ $stmp->execute(array( ':em' => $photo_id ));
 $rop = $stmp->fetch(PDO::FETCH_ASSOC);
 
 }while($rop== true);
+
 $_SESSION['photo_id']=$photo_id;
+
 if(isset($_FILES['image'])){
    $errors= array();
    $file_name = $_FILES['image']['name'];
@@ -53,7 +55,7 @@ if(isset($_FILES['image'])){
    $file_ext=strtolower(end(explode('.',$_FILES['image']['name'])));
  $name=$_SESSION['username'];
    $extensions= array("jpeg","jpg","png");
-$imgname= $name.$photo_id.".".$file_ext;
+
    if(in_array($file_ext,$extensions)=== false){
       $errors[]="extension not allowed, please choose a JPEG or PNG file.";
    }
@@ -64,7 +66,7 @@ $imgname= $name.$photo_id.".".$file_ext;
 
 
    if(empty($errors)==true){
-
+$imgname= $name.$photo_id.".".$file_ext;
      $mbno=$_SESSION['mobno'];
      $email=$_SESSION['email'];
      $name=$_SESSION['username'];
@@ -222,78 +224,67 @@ $json = json_encode($data);
 	<section class="section news-singel section_first">
 	    <div class="container">
 		    <!-- Post -->
-			<article class="item-news item-news__main">
-					<header class="item-news__header">
-					    <h2 class="title title__h1">Contest — Nature Photography.</h2>
-						<h6 class="title__h6 title__overhead">Open ON – 1 Aug 2020</h6>
-					</header>
-					<figure class="media-content">
-					    <span class="reveal">
-						    <img class="news-image" src="img/32_image.jpg" alt="News">
-						</span>
-				    </figure>
-					<div class="item-news__paragraph">
-					  	<blockquote class="block-quote block-quote_center">
-					        <p>Capture the nature. — Win ₹5000/- </p>
-							— <cite>Registration — ₹10/- </cite>
-						</blockquote>
-						<h2>How to Participate — </h2>
 
-						<p>You have to upload the image below as " Google photos " or " Google Drive " link. This is done to retain the image quality. In the same link you have to upload screenshot of the payment.  </p>
-						<p>The image will be processed and then it will be uploaded. Please be honest and upload photo that is taken by you only. If found that you are going against the terms, then you will be disqualifed. Don't worrier about the payment we will return back.</p>
-						<p>* please note — You have to upload both Photograph and payment screenshot in the link and the you have to sumbit. If you have any doubts contact as on the below mentioned mail id. </p>
-				<!--		<p>You have to upload the image below as " Google photos " or " Google Drive " link. This is done to retain the image quality. In the same link you have to upload screenshot of the payment.  </p>
-						<p>The image will be processed and then it will be uploaded. Please be honest and upload photo that is taken by you only. If found that you are going against the terms, then you will be disqualifed. Don't worrier about the payment we will return back.</p>
-						<p>* please note — You have to upload both Photograph and payment screenshot in the link and the you have to sumbit. If you have any doubts contact as on the below mentioned mail id. </p>
-				-->
-						<br>
-						<h4>Payment to be done on UPI ID: photocomptia@ybl</h4>
-						<br>
-						<br>
-
-
-						<footer class="item-news__footer">
-					        <div class="share-post">
-								<div class="btn-block" >
-									<a class="btn" href="event_gallery.html">Contest Gallery</a>
-								   </div>
-					<!--				<a href="#"><i class="fa fa-facebook" aria-hidden="true"></i><span>Facebook</span></a>
-							    <a href="#"><i class="fa fa-twitter" aria-hidden="true"></i><span>Tweet</span></a>
-						    <a href="#"><i class="fa fa-google-plus" aria-hidden="true"></i><span>Google Plus</span></a>
-								<a class="like-post" href="#"><i class="fa fa-heart" aria-hidden="true"></i><span>1</span></a>
-				-->
-						    </div>
-					    </footer>
-					</div>
-			</article>
+        <div class="container container_md">
+     					<div class="row">
 			<!-- /Post -->
+<div class="col-lg-12">
+<center>
 
-		<h2>Register Here -</h2> <br> <br>
-		        <!-- Comment Form -->
+  <?if(isset($imgname)) {
+           echo('<p style="color: green;">'.'File submitted successfully Pay to continue'."</p>\n");
+          }?>
+
+		<h2>Register Here -</h2> <br>
+
+
+
+  </center>
+
+
+            <!-- Comment Form -->
+                                   <h3> Upload your photo in the below tab and then sumbit. If you want to change your photo, you can always click that link again to re-upload the photo.
+        							 </h3> <br> <br>
+
+
 
 <center>
-<div class="upload">
-  <form action="" method="POST" enctype="multipart/form-data">
-     <input type="file" name="image" />
-     <input  type="submit"/>
-  </form></br></br>
 
-<div class="pay">
-  <?
+
+
+  <form action="" method="POST" enctype="multipart/form-data">
+    <center>
+     <input type="file" name="image" /></br><center>
+     <input type="checkbox"  required class="largerCheckbox"><h7> By clicking on this you will agree to our <a href="#">Terms and conditions.</a> </h7>
+
+
+   </br></br> <input  type="submit"/>
+
+ </form></center></br>
+<center>
+ <div class="pay">
+  <?if(isset($imgname)) {
               require("checkout/{$checkout}.php");
-                ?>
-                <!-- /Comment Form --></center></div>
-	        </div>
+            }
+
+
+            ?>
+</div>
+</center>    <!-- /Comment Form -->
+
+
         </div>
+      </div>
+    </div>
+  </div>
+
 	        <!-- /Comments -->
 
 	</section>
-  ////////////////////////////////////////////////////////////////////////////
-<a id="open-popup" class="btn btn__contact" href="register.php">Register Now</a>
 
 
-/////////////////////////////////////////////////////////////////////////////
-  
+
+
 
     <!-- /Blog -->
 
@@ -381,6 +372,7 @@ $json = json_encode($data);
 	    </div>
 	</div>
 	<!-- /Overlay Menu -->
+
 	<!-- JavaScripts -->
 	<script src="js/jquery-3.1.1.min.js" type="text/javascript"></script>
 	<script src="js/plugins.js" type="text/javascript"></script>

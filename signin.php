@@ -72,6 +72,24 @@ else{
    <!-- Modernizr -->
    <script src="js/modernizr.custom.js" type="text/javascript"></script>
 
+
+   <script src="js/modernizr.custom.js" type="text/javascript"></script>
+    <script src="https://www.gstatic.com/firebasejs/5.0.4/firebase.js"></script>
+    <script>
+      var config = {
+        apiKey: "AIzaSyA1rRG77hpoYS3i6moo900KD8GR1wQ5Kh8",
+        authDomain: "okcredit-7535e.firebaseapp.com",
+        databaseURL: "https://okcredit-7535e.firebaseio.com",
+        projectId: "okcredit-7535e",
+        storageBucket: "okcredit-7535e.appspot.com",
+        messagingSenderId: "870984863712"
+      };
+      firebase.initializeApp(config);
+    </script>
+     <script src="https://cdn.firebase.com/libs/firebaseui/2.3.0/firebaseui.js"></script>
+     <link type="text/css" rel="stylesheet" href="https://cdn.firebase.com/libs/firebaseui/2.3.0/firebaseui.css" />
+     <link href="style.css" rel="stylesheet" type="text/css" media="screen" />
+
  </head>
 
  <body>
@@ -129,7 +147,8 @@ else{
 
   </div>
 </form>
-<a href="signup.php">Signup</a>
+<div id="signups">
+<a href="signup.php">Signup</a></div>
 </center>
 
 <footer class="footer">
@@ -194,6 +213,14 @@ else{
       </div>
     </div>
 </div>
+
+<script>
+document.getElementById('signupss').addEventListener('click', function() {
+  firebase.auth().signOut();
+});
+  </script>
+
+
 <script src="js/jquery-3.1.1.min.js" type="text/javascript"></script>
 <script src="js/plugins.js" type="text/javascript"></script>
   <script src="js/common.js" type="text/javascript"></script>
