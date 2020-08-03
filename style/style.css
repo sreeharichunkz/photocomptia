@@ -153,6 +153,7 @@ textarea.form-control {
 .has-danger .form-control {
   border-color: #5328fe;
   box-shadow: none;
+  font-color:black;
 }
 .has-danger .form-control:focus {
   border-color: #5328fe;
@@ -189,7 +190,7 @@ textarea.form-control {
 ::placeholder,
 .form-control::placeholder {
   color: #fff;
-  transition: all 0.3s cubic-bezier(0.7, 0, 0.3, 1);
+
 }
 
 :-ms-input-placeholder,
@@ -205,6 +206,7 @@ textarea.form-control {
 
 :focus:-ms-input-placeholder {
   color: transparent;
+  color: red;
 }
 
 input:-webkit-autofill,
@@ -4711,4 +4713,50 @@ img {
   transition: all 0.6s cubic-bezier(0.7, 0, 0.3, 1);
 }
 
+.tab {
+  display: inline-flex;
+     flex-wrap: wrap;
+     list-style: none;
+     margin-bottom: 2rem;
+     padding: 0;
+ }
+
+ /* Style the buttons inside the tab */
+ .tab button {
+   background-color: inherit;
+   color: white;
+   float: left;
+   border: none;
+   outline: none;
+   cursor: pointer;
+   padding: 14px 16px;
+   transition: 0.3s;
+
+   font-size: 1.125rem;
+     font-weight: 500;
+     padding-right: 2rem;
+
+ }
+
+ /* Change background color of buttons on hover */
+ .tab button:hover {
+   background-color: inherit;
+
+ }
+
+ /* Create an active/current tablink class */
+ .tab button.active {
+   color: #5328fe
+ }
+
+ /* Style the tab content */
+ .tabcontent {
+   display: none;
+   padding: 6px 12px;
+
+   border-top: none;
+ }
+
+
+ 
 /*# sourceMappingURL=style.css.map */

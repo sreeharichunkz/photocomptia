@@ -10,28 +10,7 @@ require('config.php');
 require('razorpay-php/Razorpay.php');
 require_once('pdo.php');
 
-if(isset($_POST['register'])){
 
-    if(isset($_POST['photolink']) && strlen($_POST['photolink']) > 0){
-         $link=$_POST['photolink'];
-         $mbno=$_SESSION['mobno'];
-         $email=$_SESSION['email'];
-         $name=$_SESSION['username'];
-
-                    $stmt = $pdo->prepare('INSERT INTO photoreg
-                     (personid, name, mobno, email,photolink) VALUES ( :id, :uname, :mb, :em, :link)');
-                     $stmt->execute(array(
-                            ':id' => $_SESSION['personid'],
-                             ':uname' => $name,
-                             ':mb' => $mbno,
-                             ':em' => $email,
-                             ':link' => $link)
-                         );
-
-                     $_SESSION['success']="Record added";
-                     header("Location: signin.php");
-}
-}
 do{
 $permitted_chars = '0123456789abcdefghijklmnopqrstuvwxyz';
 // Output: 54esmdr0qf
@@ -45,7 +24,9 @@ $rop = $stmp->fetch(PDO::FETCH_ASSOC);
 }while($rop== true);
 
 $_SESSION['photo_id']=$photo_id;
-
+$mbno=$_SESSION['mobno'];
+$email=$_SESSION['email'];
+$name=$_SESSION['username'];
 if(isset($_FILES['image'])){
    $errors= array();
    $file_name = $_FILES['image']['name'];
@@ -67,9 +48,7 @@ if(isset($_FILES['image'])){
 
    if(empty($errors)==true){
 $imgname= $name.$photo_id.".".$file_ext;
-     $mbno=$_SESSION['mobno'];
-     $email=$_SESSION['email'];
-     $name=$_SESSION['username'];
+
       move_uploaded_file($file_tmp,"contest/".$imgname);
       echo "Success";
       $stmt = $pdo->prepare('INSERT INTO photoreg
@@ -137,7 +116,7 @@ $data = [
 
     "name"              => "dfdf",
     "email"             => $_SESSION['email'],
-    "contact"           => $_SESSION['mobno'],
+    "contact"           => $mbno,
 
     ],
     "notes"             => [
