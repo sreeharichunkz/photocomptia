@@ -873,6 +873,8 @@ img {
 ----------------------------------------------------------------- */
 .navbar {
   padding: 25px 40px;
+  background-color: #111111;
+ box-shadow: 0 20px 40px rgba(0, 0, 0, 0.9);
   position: fixed;
   width: 100%;
   transition: all 0.3s cubic-bezier(0.7, 0, 0.3, 1);
@@ -4758,5 +4760,5 @@ img {
  }
 
 
- 
+
 /*# sourceMappingURL=style.css.map */

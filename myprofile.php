@@ -18,6 +18,29 @@ $stmp = $pdo->prepare('SELECT * FROM signups WHERE personid = :id');
 $stmp->execute(array( ':id' => $_SESSION['personid'] ));
 
 $rop = $stmp->fetch(PDO::FETCH_ASSOC);
+
+
+if(isset($_POST['submit']) && strlen($_POST['password']) > 0 ) {
+//  $sql = "UPDATE signups SET password=:fn";
+//  $stmt = $pdo->prepare($sql);
+
+$sql = "UPDATE signups SET password = :mk
+  WHERE personid = :yr ";
+$stmt = $pdo->prepare($sql);
+$stmt->execute(array(
+':mk' =>$_POST['password'],
+':yr' => $_SESSION['personid'] ));
+
+
+
+              $_SESSION['success']="Your password changed successfully";
+}
+
+
+
+
+
+
 ?>
 
 <!DOCTYPE html>
@@ -251,8 +274,6 @@ input:-webkit-autofill:active {
     <!-- /Header -->
 
 
-
-
     <!--Tab menu-->
     <section class="section section-works section_top-space-230 section_first">
     	<div class="container">
@@ -262,6 +283,11 @@ input:-webkit-autofill:active {
                 <button class="tablinks" onclick="openCity(event, 'Coin')">Photo Coin</button>
               </div>
       <!--/tab menu-->
+      <?
+          if ( isset($_SESSION['success']) ) {
+              echo('<p style="color: green;">'.htmlentities($_SESSION['success'])."</p>\n");
+              unset($_SESSION['success']);
+          }?>
 
 
    <!--My Profile-->
@@ -310,19 +336,22 @@ input:-webkit-autofill:active {
         <div class="container">
         <h3>Change Password</h3>
         <br>
+          <form method="post">
         <div class="row">
             <div class="col-lg-6">
                 <div class="form-group">
-                    <label for="email" >New Password</label>
-                    <input type="password"  class="form-control input" id="password" required data-error="Please, enter your password" autocomplete="off">
+
+                    <label for="password" >New Password</label>
+                    <input type="password"  class="form-control input" id="password" name="password" required data-error="Please, enter your password" autocomplete="off">
                 </div>
             </div>
 
         </div>
         <div class="btn-block text-center">
-            <button type="submit" class="btn">Change Password</button>
+            <button type="submit" name="submit" class="btn">Change Password</button>
             <div id="validator-contact" class="hidden"></div>
         </div>
+      </form>
         </div>
     </div>
 

@@ -25,7 +25,7 @@
             if(strpos( $_POST['email'], '@') == true){
             require_once('pdo.php');
 
-            $stmp = $pdo->prepare('SELECT * FROM signup WHERE email = :em || mobno = :mb');
+            $stmp = $pdo->prepare('SELECT * FROM signups WHERE email = :em || mobno = :mb');
 
             $stmp->execute(array( ':em' => $email, ':mb' => $_REQUEST['mbno'] ));
 
