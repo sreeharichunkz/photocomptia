@@ -1,5 +1,3 @@
-
-
   <?php
   ini_set('display_errors', 1);
   ini_set('display_startup_errors', 1);
@@ -25,22 +23,59 @@
             if(strpos( $_POST['email'], '@') == true){
             require_once('pdo.php');
 
-            $stmp = $pdo->prepare('SELECT * FROM signups WHERE email = :em || mobno = :mb');
+            $stmk = $pdo->prepare('SELECT * FROM signup WHERE email = :em || mobno = :mb');
 
-            $stmp->execute(array( ':em' => $email, ':mb' => $_REQUEST['mbno'] ));
+            $stmk->execute(array( ':em' => $email, ':mb' => $_REQUEST['mbno'] ));
 
-            $rop = $stmp->fetch(PDO::FETCH_ASSOC);
+            $rop = $stmk->fetch(PDO::FETCH_ASSOC);
 if($rop==false){
 
-             $stmt = $pdo->prepare('INSERT INTO signups
-              (name,password, mobno, email, location) VALUES ( :uname, :pwd, :mb, :em, :loc)');
-              $stmt->execute(array(
+  do{
+  $permitted_chars = '0123456789abcdefghijklmnopqrstuvwxyz';
+  // Output: 54esmdr0qf
+  $refer_id = substr(str_shuffle($permitted_chars), 0, 6);
+  $stmp = $pdo->prepare('SELECT * FROM signups WHERE share_id = :em');
+
+  $stmp->execute(array( ':em' => $refer_id ));
+
+  $ros = $stmp->fetch(PDO::FETCH_ASSOC);
+
+}while($ros== true);
+
+             $stmn = $pdo->prepare('INSERT INTO signups
+              (name,password, mobno, email, location, share_id) VALUES ( :uname, :pwd, :mb, :em, :loc, :refer)');
+              $stmn->execute(array(
                       ':uname' => $uname,
                       ':pwd' => $pwd,
                       ':mb' => $_REQUEST['mbno'],
                       ':em' => $email,
-                      ':loc' => $location)
+                      ':loc' => $location,
+                    ':refer' => $refer_id)
                   );
+//taking details from person shared
+                  $stnl = $pdo->prepare('SELECT * FROM signups WHERE share_id = :em ');
+
+                  $stnl->execute(array( ':em' => $_POST['refers'] ));
+
+                  $roj = $stnl->fetch(PDO::FETCH_ASSOC);
+//Taking details from same person
+
+                  $stlh = $pdo->prepare('SELECT * FROM signups WHERE share_id = :em ');
+
+                  $stlh->execute(array( ':em' => $refer_id ));
+
+                  $rok = $stlh->fetch(PDO::FETCH_ASSOC);
+//////////////////////////////////////////////////////////////////////////////////////
+                  $stqt = $pdo->prepare('INSERT INTO refer_1
+                   (refering_person_id, refering_person, refered_person_id, refered_person) VALUES ( :uname, :pwd, :mb, :em)');
+                   $stqt->execute(array(
+                           ':uname' => $roj['personid'],
+                           ':pwd' => $roj['name'],
+                           ':mb' => $rok['personid'],
+                           ':em' => $rok['name'])
+                       );
+
+
 
               $_SESSION['success']="Record added";
               header("Location: signin.php");
@@ -141,6 +176,7 @@ else{  $_SESSION['failure'] = "Email is invalid";}
     }
     ?>
     <center>
+    </br></br>
   <form method="post" class="box_form">
     <div class="form_box">
   <label for="uname"><b>Username</b></label>
@@ -157,9 +193,15 @@ else{  $_SESSION['failure'] = "Email is invalid";}
   <input type="text" class="form_box_email"  placeholder="Enter Email" name="email" autocomplete="on"required></br>
 </div>
 <div class="form_box">
-<label for=""><b>Location</b></label>
+<label for="location"><b>Location</b></label>
 
 <input type="text" marginLeft=10px  placeholder="Enter Location" name="location" autocomplete="on"required></br>
+</div>
+
+<div class="form_box" id="refer_id">
+<label for="refers"><b>Referal ID</b></label>
+
+<input type="text" marginLeft=10px  placeholder="Referal ID (OPTIONAL)" name="refers" autocomplete="on"required></br>
 </div>
 
   <div class="form_box">
