@@ -1,3 +1,31 @@
+<?php
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
+
+           require_once('pdo.php');
+  session_start();
+
+
+  $stnl = $pdo->prepare('SELECT * FROM signups WHERE personid = :em ');
+
+  $stnl->execute(array( ':em' => $_SESSION['personid'] ));
+
+  $roj = $stnl->fetch(PDO::FETCH_ASSOC);
+?>
+
+
+
+
+
+
+
+
+
+
+
+
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -49,9 +77,13 @@
 			<span class="hamburger__text">Menu</span>
 
 		</div>
-		<div class="hamburger__login">
-			<a class="link_login" href="login.php"><b>LOGIN</b></a>
-
+    <div class="hamburger__login">
+      <?  if( isset($_SESSION['personid']) ) { ?>
+      <a class="link_login" href="userlogout.php"><b>LOGOUT</b></a><?
+  } else{
+  ?>
+  <a class="link_login" href="signin.php?page=refer.php"><b>LOGIN</b></a>
+  <?}?>
         </div>
 	</nav>
 	<!-- /Header -->
@@ -69,13 +101,67 @@
         </div>
         <div class="container">
            <center>
-               <h3>Your Refferance code is : #12hdka8</h3>
+               <h3>Your Refferance code is : <? echo $roj['share_id']?></h3>
            </center>
            <br>
     <h4>Refer a Friend and Earn 5 Photocoins...</h4>
     <br><br>
-    <h6>You have not refered yet.</h6>
-    </div>
+  </div>
+<div class="col-md-2 col-lg-3">
+  <h5>Share with:</h5>
+  <img src="img/facebook.png" width="40px" >
+    <a href="whatsapp://send?text=Hi there, join a photo contest with me in photocomptia and use refferal code as <? echo $roj['share_id']?>  https://akhilsnair1047.github.io/Photocomptia/" data-action="share/whatsapp/share"><img src="img/whatsapp.png" width="35px" ></a>
+  <!--img src="img/insta.png" width="40px" -->
+  <a href="mailto:?subject=Cheak this contest&amp;body=Hi there, join a photo contest with me in photocomptia and use refferal code as 123bdhs. Check out this site https://akhilsnair1047.github.io/Photocomptia/"
+ title="Share by Email"><img src="img/mail_icon_2.png" width="40px" ></a>
+
+
+
+  </div>
+<br><br>
+
+    <span><img src="img/mail_icon.png" style="width: 75px;"/></span>
+
+    <span> You can refer a friend to join a contest using refferal code via mail, whatsapp etc.</span>
+    <br><br><br>
+    <span><img src="img/coin.png" style="width: 75px;"/></span>
+
+    <span> On their first ever participation you get 5 photocoin reward.</span>
+    <br><br><br><br>
+  <?  $stmt = $pdo->query("SELECT * FROM refer_1 WHERE refering_person_id=".$_SESSION['personid']);
+  $row = $stmt->fetch(PDO::FETCH_ASSOC);
+  if($row ==false){?>
+    <h6>You have not reffered yet. Refer using the above code to get coins.</h6>
+</br><?} else{?><center><div class="refer_table">
+<?
+$i=1;
+echo('<table border="5">'."\n");
+echo "<tr><td>";
+echo("<b>Sl No</b>");
+echo("</td><td>");
+echo("<b>Name</b>");
+echo("</td><td>");
+echo("<b>Contest joined</b>");
+echo("</td><td>");
+
+while ( $row = $stmt->fetch(PDO::FETCH_ASSOC) ) {
+echo ("<tr><td>");
+echo $i;
+echo("</td><td>");
+echo(htmlentities($row['refered_person']));
+echo("</td><td>");
+echo("<center>".$row['contest_joined']."</center>");
+
+$i++;
+
+
+}
+echo("</table>");
+?>
+</div></center>
+<?}?>
+</div>
+</br>
     <div class="text-decoration text-decoration_bottom" data-100-start="transform[swing]:translateY(100px)" data--800-top="transform[swing]:translateY(-100px)">Refer</div>
 
 	<!-- /About -->
