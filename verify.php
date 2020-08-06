@@ -53,6 +53,30 @@ if ($success === true)
 
                  ':yr' => $_SESSION['photo_id'] ));
 
+$stml = $pdo->query("SELECT * FROM signups WHERE personid=".$_SESSION['personid']);
+$row = $stml->fetch(PDO::FETCH_ASSOC);
+
+if(!isset($_SESSION['contest_joined'])){
+                 $_SESSION['contest_joined']=$row['contest_joined'];
+$rs=$_SESSION['contest_joined'] +1;
+
+              $sql = "UPDATE signups SET contest_joined =:rs
+                       WHERE personid = :ys ";
+                 $stmp = $pdo->prepare($sql);
+                 $stmp->execute(array(
+                    ':rs' => $rs,
+                     ':ys' => $_SESSION['personid'] ));
+
+$stkl = $pdo->query("SELECT * FROM refer_1 WHERE refered_person_id=".$_SESSION['personid']);
+$rom = $stkl->fetch(PDO::FETCH_ASSOC);
+if($rom!=false){
+$sql = "UPDATE refer_1 SET contest_joined =:rs
+         WHERE refered_person_id = :ys ";
+   $stmp = $pdo->prepare($sql);
+   $stmp->execute(array(
+      ':rs' => $rs,
+       ':ys' => $_SESSION['personid'] ));
+}}
 }
 else
 {
