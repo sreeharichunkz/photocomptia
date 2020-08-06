@@ -12,6 +12,8 @@ error_reporting(E_ALL);
   $stnl->execute(array( ':em' => $_SESSION['personid'] ));
 
   $roj = $stnl->fetch(PDO::FETCH_ASSOC);
+
+
 ?>
 
 
@@ -23,7 +25,7 @@ error_reporting(E_ALL);
 
 
 
-
+<?if(isset($_SESSION['personid'])){?>
 
 
 <!DOCTYPE html>
@@ -251,7 +253,10 @@ echo("</table>");
 	<!-- JavaScripts -->
 	<script src="js/jquery-3.1.1.min.js" type="text/javascript"></script>
 	<script src="js/plugins.js" type="text/javascript"></script>
-    <script src="js/common.js" type="text/javascript"></script>
+    <script src="js/common.js" type="text/javascript"></script><?}
+    else {
+         header("Location: signin.php?page=refer.php");
+    }?>
 
 </body>
 

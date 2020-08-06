@@ -45,7 +45,10 @@ die('Not logged in');
         echo("</td><td>");
         echo("<b>Location</b>");
         echo("</td><td>");
+        echo("<b>contest joined</b>");
+        echo("</td><td>");
         echo("<b>password update</b>");
+
   $stmt = $pdo->query("SELECT * FROM signups");
   while ( $row = $stmt->fetch(PDO::FETCH_ASSOC) ) {
 
@@ -61,6 +64,8 @@ die('Not logged in');
       echo(htmlentities($row['email']));
       echo("</td><td>");
       echo(htmlentities($row['location']));
+      echo("</td><td>");
+      echo(htmlentities($row['contest_joined']));
       echo("</td><td>");
     echo ('<a href="editpassword.php?personid='.$row['personid'].'">Edit Password</a> ');
 

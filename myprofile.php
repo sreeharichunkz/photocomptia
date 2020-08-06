@@ -6,9 +6,9 @@
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
-
+$conn = mysqli_connect('localhost', 'roots', 'password', 'photo');
 session_start();
-
+$conn = mysqli_connect('localhost', 'roots', 'password', 'photo');
 require('config.php');
 require('razorpay-php/Razorpay.php');
 require_once('pdo.php');
@@ -35,13 +35,25 @@ $stmt->execute(array(
 
               $_SESSION['success']="Your password changed successfully";
 }
+$slnl = $pdo->prepare('SELECT * FROM signups WHERE personid = :em ');
+
+$slnl->execute(array( ':em' => $_SESSION['personid'] ));
+
+$roj = $slnl->fetch(PDO::FETCH_ASSOC);
+
+$sml = "SELECT COUNT(*) FROM refer_1
+      WHERE refering_person_id = ".$_SESSION['personid']." AND contest_joined>='1'";
 
 
-
-
-
+      $rs = mysqli_query($conn, $sml);
+      $result = mysqli_fetch_array($rs);
 
 ?>
+
+
+
+
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -273,7 +285,6 @@ input:-webkit-autofill:active {
 	</nav>
     <!-- /Header -->
 
-
     <!--Tab menu-->
     <section class="section section-works section_top-space-230 section_first">
     	<div class="container">
@@ -298,6 +309,7 @@ input:-webkit-autofill:active {
 			    <div class="col-12 section__header-wrap">
 				    <h2 class="title_section title_h1 title_horizontal-line"><span class="reveal reveal_gray">My Profile</span></h2>
 	             </div>
+
 
                 <div class="col-lg-6">
                  <div class="form-group">
@@ -382,8 +394,16 @@ input:-webkit-autofill:active {
         <div class="col-12 section__header-wrap">
             <h2 class="title_section title_h1 title_horizontal-line"><span class="reveal reveal_gray">Photo Coin</span></h2>
          </div>
+
+
+
+
+
+
+
+
          <br>
-         <h4>Your Coin Balance is : 0</h4>
+         <h4>Your Coin Balance is <?php echo $result[0]*5;?></h4>
          <h6>you can reedem this coin for taking part in new events or you can transfer directly to your bank account.</h6>
 
      </div>
