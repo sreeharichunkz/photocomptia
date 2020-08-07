@@ -112,7 +112,11 @@ error_reporting(E_ALL);
 <div class="col-md-2 col-lg-3">
   <h5>Share with:</h5>
   <img src="img/facebook.png" width="40px" >
-    <a href="whatsapp://send?text=Hi there, join a photo contest with me in photocomptia and use refferal code as <? echo $roj['share_id']?>  https://akhilsnair1047.github.io/Photocomptia/" data-action="share/whatsapp/share"><img src="img/whatsapp.png" width="35px" ></a>
+
+  
+  <a href="https://api.whatsapp.com/send?text= Hi there, join a photo contest with me in photocomptia and use refferal code as <? echo $roj['share_id']?>  https://akhilsnair1047.github.io/Photocomptia/" data-action="share/whatsapp/share"><img src="img/whatsapp.png" width="35px" ></a>
+
+
   <!--img src="img/insta.png" width="40px" -->
   <a href="mailto:?subject=Cheak this contest&amp;body=Hi there, join a photo contest with me in photocomptia and use refferal code as 123bdhs. Check out this site https://akhilsnair1047.github.io/Photocomptia/"
  title="Share by Email"><img src="img/mail_icon_2.png" width="40px" ></a>

@@ -278,11 +278,15 @@ input:-webkit-autofill:active {
 			<span class="hamburger__text">Menu</span>
 
 		</div>
-		<div class="hamburger__login">
-			<a class="link_login" href="login.php"><b>LOGIN</b></a>
-
+    <div class="hamburger__login">
+      <?  if( isset($_SESSION['personid']) ) { ?>
+      <a class="link_login" href="userlogout.php"><b>LOGOUT</b></a><?
+} else{
+?>
+  <a class="link_login" href="signin.php?page=myprofile.php"><b>LOGIN</b></a>
+<?}?>
         </div>
-	</nav>
+  </nav>
     <!-- /Header -->
 
     <!--Tab menu-->
@@ -403,7 +407,7 @@ input:-webkit-autofill:active {
 
 
          <br>
-         <h4>Your Coin Balance is <?php echo $result[0]*5;?></h4>
+         <h4>Your Coin Balance is <?php echo $result[0]*5;?> <img src="img/photoicon.png"></h4>
          <h6>you can reedem this coin for taking part in new events or you can transfer directly to your bank account.</h6>
 
      </div>
@@ -461,25 +465,25 @@ input:-webkit-autofill:active {
             <div class="dl-menu__wrap dl-menuwrapper">
                 <ul class="dl-menu dl-menuopen">
 					<li>
-					    <a href="index.html">Home</a>
+					    <a href="index.php">Home</a>
 				    </li>
 				    <li>
 
-						    <li><a href="about.html">About Us</a></li>
+						    <li><a href="about.php">About Us</a></li>
 					<!--    <li><a href="about_onescreen.html">Our Team</a></li>    -->
 
 					</li>
 
 					<li>
-						<a href="next_contest.html"> Current Events</a>
+						<a href="next_contest.php"> Current Events</a>
 					</li>
 					<li>
-					    <a href="event_gallery.html">Event Gallery </a>
+					    <a href="contest_page.php">Event Gallery </a>
 				    </li>
 		   		<!--	<li>
 					    <a href="blog.html">Our Services</i></a>
 				    </li>    -->
-					<li><a href="contact.html">Contact Us</a></li>
+					<li><a href="contact.php">Contact Us</a></li>
 
 				<!--    <li>
 					    <a href="#">Socials <i class="fa fa-angle-down" aria-hidden="true"></i></a>

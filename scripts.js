@@ -10,7 +10,7 @@ $('.like-btn').on('click', function(){
   	action = 'unlike';
   }
   $.ajax({
-  	url: 'index.php',
+  	url: 'cont.php',
   	type: 'post',
   	data: {
   		'action': action,
@@ -46,7 +46,7 @@ $('.dislike-btn').on('click', function(){
   	action = 'undislike';
   }
   $.ajax({
-  	url: 'index.php',
+  	url: 'cont.php',
   	type: 'post',
   	data: {
   		'action': action,
