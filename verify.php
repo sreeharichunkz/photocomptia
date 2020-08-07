@@ -45,7 +45,8 @@ if ($success === true)
 {
     $html = "<p>Your payment was successful</p>
              <p>Payment ID: {$_POST['razorpay_payment_id']}</p>
-             <p  style='background-color:tomato;'>You will be informed when the contest is live</p>";
+             <p  style='background-color:tomato;'>You will be informed when the contest is live</p>
+                <p >check the contest page <a href='nature_contest.php'>here</a></p>";
 
              $sql = "UPDATE photoreg SET payment = 'Done'
                    WHERE photo_id = :yr ";
@@ -53,7 +54,17 @@ if ($success === true)
              $stmt->execute(array(
 
                  ':yr' => $_SESSION['photo_id'] ));
+////////////////////////////////////////////
+            $sml="INSERT INTO `nature_post` (`text`, `added`) VALUES
+                 (:yr, 0)";
+                    $smt = $pdo->prepare($sml);
+                    $smt->execute(array(
 
+                    ':yr' => '<img src="contest/'.$_SESSION['image_name'].'" width="600"><p>By — '.$_SESSION['username'].'</p>'));
+  /*
+                        $stmt = $pdo->prepare('INSERT INTO nature_post
+                         (text, added, mobno, email,photolink,photo_id) VALUES ( :id, :uname, :mb, :em, :link, :imgid)');
+//////////////////////////////////////////////////////////////////////////////// */
 $stml = $pdo->query("SELECT * FROM signups WHERE personid=".$_SESSION['personid']);
 $row = $stml->fetch(PDO::FETCH_ASSOC);
 

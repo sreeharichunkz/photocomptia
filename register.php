@@ -48,7 +48,7 @@ if(isset($_FILES['image'])){
 
    if(empty($errors)==true){
 $imgname= $name.$photo_id.".".$file_ext;
-
+$_SESSION['image_name']=$imgname;
       move_uploaded_file($file_tmp,"contest/".$imgname);
       echo "Success";
       $stmt = $pdo->prepare('INSERT INTO photoreg
@@ -197,7 +197,7 @@ $json = json_encode($data);
       <a class="link_login" href="userlogout.php"><b>LOGOUT</b></a><?
 } else{
 ?>
-  <a class="link_login" href="signin.php?page=next_contest.php"><b>LOGIN</b></a>
+  <a class="link_login" href="signin.php?page=register.php"><b>LOGIN</b></a>
 <?}?>
         </div>
 	</nav>
