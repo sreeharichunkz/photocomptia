@@ -247,22 +247,25 @@ else{  $_SESSION['failure'] = "Email is invalid";}
       </li>
       <li>
 
-          <li><a href="about.html">About Us</a></li>
+          <li><a href="myprofile.php">My Profile</a></li>
       <!--    <li><a href="about_onescreen.html">Our Team</a></li>    -->
+    </li>
+    <li>
 
+        <li><a href="refer.php">Refer And Earn</a></li>
       </li>
 
       <li>
-        <a href="next_contest.php"> Current Events</a>
+        <a href="next_contest.php">Reg:Next Contest</a>
       </li>
       <li>
-        <a href="contest_page.php">Event Gallery</a>
+        <a href="contest_page.php">Live Contest</a>
       </li>
        <!--	<li>
         <a href="blog.html">Our Services</i></a>
       </li>    -->
-      <li><a href="contact.html">Contact Us</a></li>
-      <li><a href="signup.php">Signup/login</a></li>
+      <li><a href="contact.php">Contact Us</a></li>
+    
       <!--    <li>
             <a href="#">Socials <i class="fa fa-angle-down" aria-hidden="true"></i></a>
             <ul class="dl-submenu">

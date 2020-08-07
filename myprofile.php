@@ -469,16 +469,16 @@ input:-webkit-autofill:active {
 				    </li>
 				    <li>
 
-						    <li><a href="about.php">About Us</a></li>
+						    <li><a href="refer.php">Refer And Earn</a></li>
 					<!--    <li><a href="about_onescreen.html">Our Team</a></li>    -->
 
 					</li>
 
 					<li>
-						<a href="next_contest.php"> Current Events</a>
+						<a href="next_contest.php">Reg:Next Contest</a>
 					</li>
 					<li>
-					    <a href="contest_page.php">Event Gallery </a>
+					    <a href="contest_page.php">Live Contest </a>
 				    </li>
 		   		<!--	<li>
 					    <a href="blog.html">Our Services</i></a>

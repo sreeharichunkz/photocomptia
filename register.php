@@ -333,20 +333,24 @@ if(isset($imgname) && !isset($_SESSION['failure'])) {
             <div class="dl-menu__wrap dl-menuwrapper">
                 <ul class="dl-menu dl-menuopen">
 					<li>
-					    <a href="index.html">Home</a>
+					    <a href="index.php">Home</a>
 				    </li>
 				    <li>
 
-						    <li><a href="about.html">About Us</a></li>
+						    <li><a href="myprofile.php">My Profile</a></li>
 					<!--    <li><a href="about_onescreen.html">Our Team</a></li>    -->
 
 					</li>
 
 					<li>
+            <li><a href="refer.php">Refer And Earn</a></li>
 					</li>
 					<li>
-					    <a href="event_gallery.html">Event Gallery </a>
-				    </li>
+					    <a href="next_contest.php">Reg:Next Context </a>
+				    </li>  <li>
+            <li><a href="contest_page.php">Live Contest</a></li>
+          </li>
+          <li>
 		   		<!--	<li>
 					    <a href="blog.html">Our Services</i></a>
 				    </li>    -->

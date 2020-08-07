@@ -644,20 +644,20 @@ require_once('pdo.php');
             <div class="dl-menu__wrap dl-menuwrapper">
                 <ul class="dl-menu dl-menuopen">
 					<li>
-					    <a href="index.php">Home</a>
+					    <a href="myprofile.php">My Profile</a>
 				    </li>
 				    <li>
 
-						    <li><a href="about.html">About Us</a></li>
+						    <li><a href="refer.pho">Refer And Earn</a></li>
 					<!--    <li><a href="about_onescreen.html">Our Team</a></li>    -->
 
 					</li>
 
 					<li>
-						<a href="next_contest.php"> Current Events</a>
+						<a href="next_contest.php"> Reg:Next Event</a>
 					</li>
 					<li>
-					    <a href="contest_page.php">Event Gallery </a>
+					    <a href="contest_page.php">Live Contest </a>
 					</li>
 
 		   		<!--	<li>

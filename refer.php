@@ -113,7 +113,7 @@ error_reporting(E_ALL);
   <h5>Share with:</h5>
   <img src="img/facebook.png" width="40px" >
 
-  
+
   <a href="https://api.whatsapp.com/send?text= Hi there, join a photo contest with me in photocomptia and use refferal code as <? echo $roj['share_id']?>  https://akhilsnair1047.github.io/Photocomptia/" data-action="share/whatsapp/share"><img src="img/whatsapp.png" width="35px" ></a>
 
 
@@ -219,25 +219,25 @@ echo("</table>");
             <div class="dl-menu__wrap dl-menuwrapper">
                 <ul class="dl-menu dl-menuopen">
 					<li>
-					    <a href="index.html">Home</a>
+					    <a href="index.php">Home</a>
 				    </li>
 				    <li>
 
-						    <li><a href="about.html">About Us</a></li>
+						    <li><a href="myprofile.php">My Profile</a></li>
 					<!--    <li><a href="about_onescreen.html">Our Team</a></li>    -->
 
 					</li>
 
 					<li>
-						<a href="next_contest.html"> Current Events</a>
+						<a href="next_contest.php">Reg:Next Contest</a>
 					</li>
 					<li>
-					    <a href="event_gallery.html">Event Gallery </a>
+					    <a href="contest_page.php">Live Contest </a>
 				    </li>
 		   		<!--	<li>
 					    <a href="blog.html">Our Services</i></a>
 				    </li>    -->
-					<li><a href="contact.html">Contact Us</a></li>
+					<li><a href="contact.php">Contact Us</a></li>
 
 				<!--    <li>
 					    <a href="#">Socials <i class="fa fa-angle-down" aria-hidden="true"></i></a>
