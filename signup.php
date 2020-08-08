@@ -6,8 +6,16 @@
              require_once('pdo.php');
     session_start();
 
-
   if(isset($_REQUEST['mbno'])){
+
+    $stms = $pdo->prepare('SELECT * FROM signup WHERE mobno = :mb');
+
+    $stms->execute(array( ':mb' => $_REQUEST['mbno'] ));
+
+    $rom = $stms->fetch(PDO::FETCH_ASSOC);
+
+    if($rom==false){
+
 
   if(isset($_POST['signup'])){
 
@@ -23,7 +31,7 @@
             if(strpos( $_POST['email'], '@') == true){
             require_once('pdo.php');
 
-            $stmk = $pdo->prepare('SELECT * FROM signup WHERE email = :em || mobno = :mb');
+            $stmk = $pdo->prepare('SELECT * FROM signups WHERE email = :em || mobno = :mb');
 
             $stmk->execute(array( ':em' => $email, ':mb' => $_REQUEST['mbno'] ));
 
@@ -133,6 +141,8 @@ else{  $_SESSION['failure'] = "Email is invalid";}
   	<!-- Modernizr -->
   	<script src="js/modernizr.custom.js" type="text/javascript"></script>
 
+
+
   </head>
 
   <body>
@@ -163,7 +173,7 @@ else{  $_SESSION['failure'] = "Email is invalid";}
 
 <center> <h1></br></br>Sign up</h1></center>
 
-
+</br></br></br><center>
     <?php
 
     if ( isset($_SESSION['failure']) ) {
@@ -174,34 +184,41 @@ else{  $_SESSION['failure'] = "Email is invalid";}
         echo('<p style="color: green;">'.htmlentities($_SESSION['success'])."</p>\n");
         unset($_SESSION['success']);
     }
-    ?>
+    ?></center>
     <center>
     </br></br>
   <form method="post" class="box_form">
+    <div class="row">
+          <div class="col-lg-6">
     <div class="form_box">
-  <label for="uname"><b>Username</b></label>
+  <label for="uname"><b>Full Name</b></label>
   <input type="text" placeholder="Enter Username" name="uname" autocomplete="on" required></br>
-</div>
-  <div class="form_box">
-  <label for="psw"><b>Password</b></label>
-  <input type="password" placeholder="Enter Password" name="psw" autocomplete="on"required></br>
-</div>
+</div></div>
+  <div class="col-lg-6">
 
   <div class="form_box">
+  <label for="psw"><b>Password</b></label>
+  <input type="password" placeholder="Enter Password" id="psw" name="psw" autocomplete="on" pattern="(?=.*\d)(?=.*[a-z]).{8,}" title="Must contain at least one number and more than 8 characters" required></br>
+</div>
+</div>
+</div>
+<div class="row">
+
+      <div class="col-lg-6">
   <label for="email"><b>Email</b></label>
 
   <input type="text" class="form_box_email"  placeholder="Enter Email" name="email" autocomplete="on"required></br>
 </div>
-<div class="form_box">
+ <div class="col-lg-6">
 <label for="location"><b>Location</b></label>
 
 <input type="text" marginLeft=10px  placeholder="Enter Location" name="location" autocomplete="on"required></br>
-</div>
+</div></div>
 
 <div class="form_box" id="refer_id">
 <label for="refers"><b>Referal ID</b></label>
 
-<input type="text" marginLeft=10px  placeholder="Referal ID (OPTIONAL)" name="refers" autocomplete="on"required></br>
+<input type="text" marginLeft=10px  placeholder="Referal ID (OPTIONAL)" name="refers" autocomplete="on"></br>
 </div>
 
   <div class="form_box">
@@ -265,7 +282,7 @@ else{  $_SESSION['failure'] = "Email is invalid";}
         <a href="blog.html">Our Services</i></a>
       </li>    -->
       <li><a href="contact.php">Contact Us</a></li>
-    
+
       <!--    <li>
             <a href="#">Socials <i class="fa fa-angle-down" aria-hidden="true"></i></a>
             <ul class="dl-submenu">
@@ -285,7 +302,84 @@ else{  $_SESSION['failure'] = "Email is invalid";}
 <script src="js/plugins.js" type="text/javascript"></script>
   <script src="js/common.js" type="text/javascript"></script>
 <?}
+else{$_SESSION['error']="Your mobile no is already registered signin to continue";
+  header("location: signin.php");
+
+}}
 else{
+
   header("location: signupotp.html");}?>
+
+  <script>
+  var myInput = document.getElementById("psw");
+  var letter = document.getElementById("letter");
+  var capital = document.getElementById("capital");
+  var number = document.getElementById("number");
+  var length = document.getElementById("length");
+
+  // When the user clicks on the password field, show the message box
+  myInput.onfocus = function() {
+    document.getElementById("message").style.display = "block";
+  }
+
+  // When the user clicks outside of the password field, hide the message box
+  myInput.onblur = function() {
+    document.getElementById("message").style.display = "none";
+  }
+
+  // When the user starts to type something inside the password field
+  myInput.onkeyup = function() {
+    // Validate lowercase letters
+    var lowerCaseLetters = /[a-z]/g;
+    if(myInput.value.match(lowerCaseLetters)) {
+      letter.classList.remove("invalid");
+      letter.classList.add("valid");
+    } else {
+      letter.classList.remove("valid");
+      letter.classList.add("invalid");
+    }
+
+    // Validate capital letters
+    var upperCaseLetters = /[A-Z]/g;
+    if(myInput.value.match(upperCaseLetters)) {
+      capital.classList.remove("invalid");
+      capital.classList.add("valid");
+    } else {
+      capital.classList.remove("valid");
+      capital.classList.add("invalid");
+    }
+
+    // Validate numbers
+    var numbers = /[0-9]/g;
+    if(myInput.value.match(numbers)) {
+      number.classList.remove("invalid");
+      number.classList.add("valid");
+    } else {
+      number.classList.remove("valid");
+      number.classList.add("invalid");
+    }
+
+    // Validate length
+    if(myInput.value.length >= 8) {
+      length.classList.remove("invalid");
+      length.classList.add("valid");
+    } else {
+      length.classList.remove("valid");
+      length.classList.add("invalid");
+    }
+  }
+  </script>
+
+
+
+
+
+
+
+  <script>
+  document.getElementById('sign-out').addEventListener('click', function() {
+    firebase.auth().signOut();
+  });
+    </script>
 </body>
 <html>

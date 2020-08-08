@@ -3,10 +3,11 @@ ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
 session_start();
-if(isset($_POST['signin'])){
-    if(isset($_POST['uname']) && strlen($_POST['uname']) > 0 && isset($_POST['psw']) && strlen($_POST['psw']) > 0 ){
    require_once('pdo.php');
-   $stmt = $pdo->prepare('SELECT * FROM signups WHERE name = :em AND password = :pw');
+if(isset($_POST['signin'])){
+    if(isset($_POST['uname']) && strlen($_POST['uname']) > 0 && isset($_POST['psw']) && strlen($_POST['psw']) > 0 ) {
+
+   $stmt = $pdo->prepare('SELECT * FROM signups WHERE mobno = :em OR email = :em AND password = :pw');
 
    $stmt->execute(array( ':em' => $_POST['uname'], ':pw' => $_POST['psw']));
 
@@ -37,7 +38,39 @@ else{
 
 
   }
+  else{
+    $_SESSION['error']="Enter the Password";
+  }
 }
+
+if(isset($_POST['frgpsw'])) {
+
+  $stmq = $pdo->prepare('SELECT * FROM signups WHERE email = :em OR mobno = :pw');
+
+  $stmq->execute(array( ':em' => $_POST['uname'], ':pw' => $_POST['uname']));
+
+  $roo = $stmq->fetch(PDO::FETCH_ASSOC);
+  if($roo==true){
+    $_SESSION['error']="Password changing url will be send to your registered email or mobile within 12hrs as per security concerns";
+
+
+    $stmn = $pdo->prepare('INSERT INTO forget_password
+     (name, mbno, email, person_id) VALUES ( :uname, :mb, :em, :pk)');
+     $stmn->execute(array(
+
+             ':uname' => $roo['name'],
+             ':mb' => $roo['mobno'],
+             ':em' => $roo['email'],
+           ':pk' => $roo['personid'])
+         );
+  }
+else {
+    $_SESSION['success']="The submitted mobile number and email are not registered";
+
+}
+
+}
+
  ?>
 
 
@@ -89,7 +122,43 @@ else{
      <script src="https://cdn.firebase.com/libs/firebaseui/2.3.0/firebaseui.js"></script>
      <link type="text/css" rel="stylesheet" href="https://cdn.firebase.com/libs/firebaseui/2.3.0/firebaseui.css" />
      <link href="style.css" rel="stylesheet" type="text/css" media="screen" />
+<style>
+#message {
+  display:none;
+  background:#000;
+  color: #f1f1f1 ;
+  position: relative;
+  padding: 2px;
+  margin-top: 10px;
+}
 
+#message p {
+  padding: 10px 35px;
+  font-size: 15px;
+}
+
+/* Add a green text color and a checkmark when the requirements are right */
+.valid {
+  color: green;
+}
+
+.valid:before {
+  position: relative;
+  left: -35px;
+  content: "✔";
+}
+
+/* Add a red text color and an "x" when the requirements are wrong */
+.invalid {
+  color: red;
+}
+
+.invalid:before {
+  position: relative;
+  left: -35px;
+  content: "✖";
+}
+</style>
  </head>
 
  <body>
@@ -112,12 +181,20 @@ else{
        <span class="hamburger__line"></span>
  <span class="hamburger__text">Menu</span>
    </div>
+   <div class="hamburger__login">
+
+     <a class="link_login" href="signup.php"><b>SIGNUP</b></a>
+
+       </div>
  </nav>
 
     <center> <h1></br></br></br>Sign In</h1></center>
-
+</br><center>
      <?php
-
+     if ( isset($_SESSION['error']) ) {
+         echo('<p style="color: red;">'.htmlentities($_SESSION['error'])."</p>\n");
+         unset($_SESSION['error']);
+     }
      if ( isset($_SESSION['failure']) ) {
          echo('<p style="color: red;">'.htmlentities($_SESSION['failure'])."</p>\n");
          unset($_SESSION['failure']);
@@ -127,29 +204,36 @@ else{
          unset($_SESSION['success']);
      }
      ?>
-
+</center>
 <center>
-<?  if ( isset($_SESSION['success']) ) {
-          echo '<p style="color:green">'.$_SESSION['success']."</p>\n";
-          unset($_SESSION['sucess']);
-      }?>
+
   <form method="post">
     <div class="signin_box">
-    <label for="uname"><b>Username</b></label>
-    <input type="text" placeholder="Enter Username" name="uname" required>
+    <label for="uname"><b>Email/Mobile no</b></label>
+    <input type="text" placeholder="Enter Email/Mobile number" name="uname" id="psw" title="Enter mobile no with country code example:919876543210" required>
+
+    <div id="message">
+
+      <p id="letter"<b>Registered Mobile number with country code  without space in between eg:919876543210  (dont use "+" )</b></p>
+      <p id="capital" ><b>Or Valid registered email </b></p>
+
+    </div>
 </div>
     <div class="signin_box">
-    <label for="psw"><b>Password</b></label>
-    <input type="text" placeholder="Enter Password" name="psw" required>
+    <label for="psw"><b>Password &nbsp&nbsp&nbsp&nbsp&nbsp</b>&nbsp&nbsp&nbsp&nbsp</label>
+    <input type="text" placeholder="Enter Password" name="psw" >
 </div>
-    <button type="submit" name="signin" >Login</button>
+  &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp  <button type="submit" name="signin" >Login</button>
       <button type="button" class="cancelbtn">Cancel</button>
 
-  </div>
+  </div></br>
+</br>
+  &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<button type="submit" name="frgpsw" >FORGOT PASSWORD</button>
 </form>
-<div id="signups">
-<a href="signup.php">Signup</a></div>
+<div id="sign-out">
+&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<a href="signup.php">Signup</a></div>
 </center>
+
 
 <footer class="footer">
 
@@ -218,12 +302,67 @@ else{
 </div>
 
 <script>
-document.getElementById('signupss').addEventListener('click', function() {
-  firebase.auth().signOut();
-});
-  </script>
+var myInput = document.getElementById("psw");
+var letter = document.getElementById("letter");
+var capital = document.getElementById("capital");
+var number = document.getElementById("number");
+var length = document.getElementById("length");
+
+// When the user clicks on the password field, show the message box
+myInput.onfocus = function() {
+  document.getElementById("message").style.display = "block";
+}
+
+// When the user clicks outside of the password field, hide the message box
+myInput.onblur = function() {
+  document.getElementById("message").style.display = "none";
+}
+
+// When the user starts to type something inside the password field
+myInput.onkeyup = function() {
+  // Validate lowercase letters
+  var lowerCaseLetters = /[a-z]/g;
+  if(myInput.value.match(lowerCaseLetters)) {
+    letter.classList.remove("invalid");
+    letter.classList.add("valid");
+  } else {
+    letter.classList.remove("valid");
+    letter.classList.add("invalid");
+  }
+
+  // Validate capital letters
+  var upperCaseLetters = /[A-Z]/g;
+  if(myInput.value.match(upperCaseLetters)) {
+    capital.classList.remove("invalid");
+    capital.classList.add("valid");
+  } else {
+    capital.classList.remove("valid");
+    capital.classList.add("invalid");
+  }
+
+  // Validate numbers
+  var numbers = /[0-9]/g;
+  if(myInput.value.match(numbers)) {
+    number.classList.remove("invalid");
+    number.classList.add("valid");
+  } else {
+    number.classList.remove("valid");
+    number.classList.add("invalid");
+  }
+
+  // Validate length
+  if(myInput.value.length >= 8) {
+    length.classList.remove("invalid");
+    length.classList.add("valid");
+  } else {
+    length.classList.remove("valid");
+    length.classList.add("invalid");
+  }
+}
+</script>
 
 
+  <script src="app.js"></script>
 <script src="js/jquery-3.1.1.min.js" type="text/javascript"></script>
 <script src="js/plugins.js" type="text/javascript"></script>
   <script src="js/common.js" type="text/javascript"></script>
