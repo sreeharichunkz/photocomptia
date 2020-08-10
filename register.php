@@ -9,7 +9,10 @@ session_start();
 require('config.php');
 require('razorpay-php/Razorpay.php');
 require_once('pdo.php');
-
+if (!isset($_SESSION['personid']) || strlen($_SESSION['personid']) < 1 ) {
+  $_SESSION['error']="Sign in to continue to that page";
+ header("Location: signin.php?page=register.php");
+}
 
 do{
 $permitted_chars = '0123456789abcdefghijklmnopqrstuvwxyz';

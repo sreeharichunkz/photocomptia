@@ -137,26 +137,7 @@ else {
   font-size: 15px;
 }
 
-/* Add a green text color and a checkmark when the requirements are right */
-.valid {
-  color: green;
-}
 
-.valid:before {
-  position: relative;
-  left: -35px;
-  content: "✔";
-}
-
-/* Add a red text color and an "x" when the requirements are wrong */
-.invalid {
-  color: red;
-}
-
-.invalid:before {
-  position: relative;
-  left: -35px;
-  content: "✖";
 }
 </style>
  </head>

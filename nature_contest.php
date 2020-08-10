@@ -3,7 +3,10 @@ include('pdo.php');
 session_start();
 /*if (!isset($_SESSION['personid']) || strlen($_SESSION['personid']) < 1 ) {
 die('<a href=signup.php>signup to continue</a>');
-}*/
+}*/if (!isset($_SESSION['personid']) || strlen($_SESSION['personid']) < 1 ) {
+  $_SESSION['error']="Sign in to continue to that page";
+ header("Location: signin.php?page=nature_contest.php");
+}
  ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -188,7 +191,7 @@ die('<a href=signup.php>signup to continue</a>');
            <a href="blog.html">Our Services</i></a>
          </li>    -->
          <li><a href="contact.php">Contact Us</a></li>
-        
+
          <!--    <li>
                <a href="#">Socials <i class="fa fa-angle-down" aria-hidden="true"></i></a>
                <ul class="dl-submenu">
