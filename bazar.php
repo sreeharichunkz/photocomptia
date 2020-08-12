@@ -233,59 +233,59 @@ if(isset($_POST['forest_contest'])) {
 	</section>
 
 	<!-- Overlay Menu -->
-	<div class="popup popup__menu">
-	    <div class="popup-inner">
-            <div class="dl-menu__wrap dl-menuwrapper">
-                <ul class="dl-menu dl-menuopen">
-					<li>
-					    <a href="index.html">Home</a>
-					</li>
-			<li>
-				<a href="#">Profile <i class="fa fa-angle-down" aria-hidden="true"></i></a>
-				<ul class="dl-submenu">
-					<li>
-					    <a href="myprofile.html">My Profile</i></a>
-					</li>
-					<li>
-					    <a href="refer.html">My Referals</a>
-					</li>
-					<li>
-						<a href="bazar.html">bazar</a>
-					</li>
+  <div class="popup popup__menu">
+        <div class="popup-inner">
+              <div class="dl-menu__wrap dl-menuwrapper">
+                  <ul class="dl-menu dl-menuopen">
+            <li>
+                <a href="index.php">Home</a>
+            </li>
+        <li>
+          <a href="#">Profile <i class="fa fa-angle-down" aria-hidden="true"></i></a>
+          <ul class="dl-submenu">
+            <li>
+                <a href="myprofile.php">My Profile</i></a>
+            </li>
+            <li>
+                <a href="refer.php">My Referals</a>
+            </li>
+            <li>
+              <a href="bazar.php">bazar</a>
+            </li>
 
-				</ul>
-			</li>
-						    <li><a href="about.html">About Us</a></li>
-					<!--    <li><a href="about_onescreen.html">Our Team</a></li>    -->
+          </ul>
+        </li>
+                  <li><a href="about.php">About Us</a></li>
+            <!--    <li><a href="about_onescreen.html">Our Team</a></li>    -->
 
-					</li>
-				<li>
-					<a href="#">Contest <i class="fa fa-angle-down" aria-hidden="true"></i></a>
-				<ul class="dl-submenu">
-					<li>
-						<a href="next_contest.html"> Current Events</a>
-					</li>
-					<li>
-					    <a href="event_gallery.html">Event Gallery </a>
-					</li>
-				</ul>
-				</li>
-					<li><a href="contact.html">Contact Us</a></li>
+            </li>
+          <li>
+            <a href="#">Contest <i class="fa fa-angle-down" aria-hidden="true"></i></a>
+          <ul class="dl-submenu">
+            <li>
+              <a href="next_contest.php"> Current Events</a>
+            </li>
+            <li>
+                <a href="nature_contest.php">Event Gallery </a>
+            </li>
+          </ul>
+          </li>
+            <li><a href="contact.php">Contact Us</a></li>
 
-				<!--    <li>
-					    <a href="#">Socials <i class="fa fa-angle-down" aria-hidden="true"></i></a>
-					    <ul class="dl-submenu">
-						    <li><a href="about_onescreen.html">About Onescreen</a></li>
-							<li><a href="coming_soon.html">Coming Soon</a></li>
-						    <li><a href="page_error.html">Page Error</a></li>
-							<li><a href="page_error_v2.html">Page Error v2</a></li>
-						    <li><a href="nav_v2.html">Menu v2</a></li>
-					    </ul>
-				    </li> -->
-			    </ul>
-		    </div>
-	    </div>
-	</div>
+          <!--    <li>
+                <a href="#">Socials <i class="fa fa-angle-down" aria-hidden="true"></i></a>
+                <ul class="dl-submenu">
+                  <li><a href="about_onescreen.html">About Onescreen</a></li>
+                <li><a href="coming_soon.html">Coming Soon</a></li>
+                  <li><a href="page_error.html">Page Error</a></li>
+                <li><a href="page_error_v2.html">Page Error v2</a></li>
+                  <li><a href="nav_v2.html">Menu v2</a></li>
+                </ul>
+              </li> -->
+            </ul>
+          </div>
+        </div>
+    </div>
 	<!-- /Overlay Menu -->
 	<!-- JavaScripts -->
 	<script src="js/jquery-3.1.1.min.js" type="text/javascript"></script>

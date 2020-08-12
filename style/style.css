@@ -6,7 +6,6 @@
  version: 1.0.6
 ------------------------------------------------ */
 /* ------------------------------------------------
-
  - General Styles
    - Input
    - Buttons
@@ -36,7 +35,6 @@
  - Footer
  - Video
  - Effects
-
 ------------------------------------------------ */
 @import url(bootstrap.min.css);
 @import url(swiper.min.css);
@@ -153,7 +151,6 @@ textarea.form-control {
 .has-danger .form-control {
   border-color: #5328fe;
   box-shadow: none;
-  font-color:black;
 }
 .has-danger .form-control:focus {
   border-color: #5328fe;
@@ -190,7 +187,7 @@ textarea.form-control {
 ::placeholder,
 .form-control::placeholder {
   color: #fff;
-
+  transition: all 0.3s cubic-bezier(0.7, 0, 0.3, 1);
 }
 
 :-ms-input-placeholder,
@@ -206,7 +203,6 @@ textarea.form-control {
 
 :focus:-ms-input-placeholder {
   color: transparent;
-  color: red;
 }
 
 input:-webkit-autofill,
@@ -247,6 +243,39 @@ input:-webkit-autofill:active {
 }
 
 /* Buttons */
+.upload_btn{
+  background-color: transparent;
+  border: 0;
+  border-radius: 0;
+  color: white;
+
+  font-family: "Poppins", sans-serif;
+  font-weight: 600;
+  display: inline-block;
+  line-height: 2;
+  letter-spacing: .2rem;
+  padding: 4px 0;
+  position: relative;
+  text-decoration: none;
+  text-transform: uppercase;
+  z-index: 3;
+}
+.submit_btn{
+  font-size: 18px;
+    font-weight: 700;
+    display: inline-block;
+    padding: 9px 15px 13px;
+    line-height: 1.1;
+    text-align: center;
+    color: #fff;
+    border-width: 0;
+    border-radius: 6px;
+    background-color: #5328fe;
+    cursor: pointer;
+    text-shadow: none;
+
+    position: relative;
+}
 .btn {
   background-color: transparent;
   border: 0;
@@ -751,6 +780,37 @@ a:hover, a:focus {
   outline: none;
   text-decoration: none;
 }
+a.link_login {
+  color: #fff;
+  display: inline-block;
+  opacity: 1;
+  position: relative;
+  text-decoration: none;
+  transition: all 0.6s cubic-bezier(0.7, 0, 0.3, 1);
+}
+a.link_login::after {
+  content: '';
+  background-color: #fff;
+  pointer-events: none;
+  height: 1px;
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  opacity: 0;
+  width: 100%;
+  transform: translateY(10px);
+  transition: all 0.3s 0s cubic-bezier(0.7, 0, 0.3, 1);
+}
+a.link_login:hover {
+  color: #fff;
+  opacity: 1;
+  text-decoration: none;
+}
+a.link_login:hover::after {
+  opacity: 1;
+  transform: translateY(-1px);
+}
+
 a.link_decoration {
   color: #fff;
   display: inline-block;
@@ -804,7 +864,7 @@ img {
     - Preloader
 ----------------------------------------------------------------- */
 .loading {
-  background: #111111;
+  background:#1a1a1a;
   color: #fff;
   position: fixed;
   top: 0;
@@ -817,7 +877,7 @@ img {
 }
 .loading::before {
   content: '';
-  background: #1a1a1a;
+  background: rgb(63, 63, 0);
   position: absolute;
   top: 0;
   left: 0;
@@ -831,7 +891,7 @@ img {
 }
 .loading::after {
   content: '';
-  background: #0f0f0f;
+  background: #410202;
   position: absolute;
   top: 0;
   left: 0;
@@ -873,8 +933,6 @@ img {
 ----------------------------------------------------------------- */
 .navbar {
   padding: 25px 40px;
-  background-color: #111111;
- box-shadow: 0 20px 40px rgba(0, 0, 0, 0.9);
   position: fixed;
   width: 100%;
   transition: all 0.3s cubic-bezier(0.7, 0, 0.3, 1);
@@ -1200,6 +1258,32 @@ img {
 }
 .hamburger.is_active .hamburger__line:nth-child(3) {
   transform: translateY(-6px) rotate(-45deg);
+}
+.hamburger__login {
+
+ font-size: 1rem;
+  line-height: 2;
+  position: absolute;
+  top: 50%;
+  right: 180px;
+  margin-top: -12px;
+  letter-spacing: 1px;
+  opacity: 1;
+  transform: translateX(0%);
+  transition: all 0.6s cubic-bezier(0.7, 0, 0.3, 1);
+}
+
+@media only screen and (max-width: 768px) {
+  .hamburger__login {
+    font-size: .86rem;
+    right: 140px;
+  }
+}
+@media only screen and (max-width: 580px) {
+  .hamburger__login {
+    font-size: .86rem;
+    right: 58px;
+  }
 }
 .hamburger__text {
   font-size: 1rem;
@@ -1984,7 +2068,33 @@ img {
 .col__quote {
   z-index: 1;
 }
-
+.text-terms {
+  color: rgba(255, 255, 255, 0.082);
+  font-size: 13rem;
+  font-weight: 700;
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  margin: 50px;
+  overflow-x: hidden;
+  text-align: center;
+  width: 100%;
+  white-space: nowrap;
+  z-index: -1;
+}
+.text-terms_bottom {
+  top: 0;
+  bottom: 0;
+}
+.text-terms_left {
+  text-align: left;
+}
+@media only screen and (max-width: 580px) {
+  .text-terms {
+    display: none;
+  }
+}
 .text-decoration {
   color: rgba(255, 255, 255, 0.03);
   font-size: 21rem;
@@ -2171,6 +2281,33 @@ img {
   height: 0px !important;
   margin: 0px !important;
   padding: 0px !important;
+}
+.image_profile
+{
+  padding: 10px 10px 10px;
+  height: 350px;
+
+}
+@media screen and (max-width: 580px) {
+  .image_profile {
+    margin-bottom: 15px;
+    width: 100%;
+    height: 100%;
+  }
+}
+@media screen and (min-width: 991px) {
+  .image_profile {
+    margin-bottom: 15px;
+    width: auto;
+    height: 180px;
+  }
+}
+@media screen and (min-width: 768px) {
+  .image_profile {
+    margin-bottom: 15px;
+    width: auto;
+    height: 240px;
+  }
 }
 
 /* More */
@@ -2858,7 +2995,7 @@ img {
   z-index: -1;
 }
 .pricing-grid__item::after {
-  background-color: #d5dbc3;
+  background-color:black;
   content: '';
   height: 100%;
   opacity: .8;
@@ -3765,7 +3902,58 @@ img {
 .pager-wrap .pager .back_grid:hover {
   fill: #c0c3c8;
 }
+/* my profile account css */
+.tab {
+  display: inline-flex;
+     flex-wrap: wrap;
+     list-style: none;
+     margin-bottom: 2rem;
+     padding: 0;
+ }
 
+ /* Style the buttons inside the tab */
+ .tab button {
+   background-color: inherit;
+   color: white;
+   float: left;
+   border: none;
+   outline: none;
+   cursor: pointer;
+   padding: 14px 16px;
+   transition: 0.3s;
+
+   font-size: 1.125rem;
+     font-weight: 500;
+     padding-right: 2rem;
+
+ }
+
+ /* Change background color of buttons on hover */
+ .tab button:hover {
+   background-color: inherit;
+
+ }
+
+ /* Create an active/current tablink class */
+ .tab button.active {
+   color: #5328fe
+ }
+
+ /* Style the tab content */
+ .tabcontent {
+   display: none;
+   padding: 6px 12px;
+
+   border-top: none;
+ }
+ @media screen and (max-width: 991px) {
+  .tab {
+    font-size: 56rem;
+    margin-right: 15px;
+    padding: 2px 2px;
+
+  }
+}
 /* Filters */
 .filter-categories {
   font-size: .86rem;
@@ -4019,10 +4207,10 @@ img {
   padding-top: 5px;
 }
 
-#contact-forms {
+#contact-form {
   width: 100%;
 }
-#contact-forms textarea {
+#contact-form textarea {
   max-height: 200px;
   overflow: auto;
 }
@@ -4701,64 +4889,5 @@ img {
 .js-block {
   overflow: hidden;
 }
-.hamburger__login {
-
- font-size: 1rem;
-  line-height: 2;
-  position: absolute;
-  top: 50%;
-  right: 180px;
-  margin-top: -12px;
-  letter-spacing: 1px;
-  opacity: 1;
-  transform: translateX(0%);
-  transition: all 0.6s cubic-bezier(0.7, 0, 0.3, 1);
-}
-
-.tab {
-  display: inline-flex;
-     flex-wrap: wrap;
-     list-style: none;
-     margin-bottom: 2rem;
-     padding: 0;
- }
-
- /* Style the buttons inside the tab */
- .tab button {
-   background-color: inherit;
-   color: white;
-   float: left;
-   border: none;
-   outline: none;
-   cursor: pointer;
-   padding: 14px 16px;
-   transition: 0.3s;
-
-   font-size: 1.125rem;
-     font-weight: 500;
-     padding-right: 2rem;
-
- }
-
- /* Change background color of buttons on hover */
- .tab button:hover {
-   background-color: inherit;
-
- }
-
- /* Create an active/current tablink class */
- .tab button.active {
-   color: #5328fe
- }
-
- /* Style the tab content */
- .tabcontent {
-   display: none;
-   padding: 6px 12px;
-
-   border-top: none;
- }
-
-
 
 /*# sourceMappingURL=style.css.map */

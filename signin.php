@@ -393,7 +393,7 @@ input[type='text'], input[type='email'], input[type='password'], input[type='dat
 <div class="col-lg-4">
     <div class="form_group">
     <label for="psw"><b>Password</b></label><br>
-    <input type="text" placeholder="Enter Password" name="psw"class="form-profile input" >
+    <input type="password" placeholder="Enter Password" name="psw"class="form-profile input" >
 </div>
 </div>
 </div>

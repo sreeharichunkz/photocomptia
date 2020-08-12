@@ -46,8 +46,8 @@ $slnl->execute(array( ':em' => $_SESSION['personid'] ));
 
 $roj = $slnl->fetch(PDO::FETCH_ASSOC);
 
-$sml = "SELECT COUNT(*) FROM refer_1
-      WHERE refering_person_id = ".$_SESSION['personid']." AND contest_joined>='1'";
+$sml = "SELECT * FROM coins
+      WHERE person_id = ".$_SESSION['personid'];
 
 
       $rs = mysqli_query($conn, $sml);
@@ -70,11 +70,19 @@ $sml = "SELECT COUNT(*) FROM refer_1
     <title>photocomptia</title>
 
 	<!-- Meta Data -->
-	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="author" content="Team" />
     <meta name="keywords" content="Photo Competions and Events" />
-    <meta name="description" content="Participate in the event and win exciting prizes." />
+	<meta name="description" content="Participate in the event and win exciting prizes." />
+	<meta http-equiv="etag" content="2efdc27c8967f14e2c829e601f7a1228"/>
+<meta property="og:title" content="Photocomptia"/>
+<meta property="og:type" content="website"/>
+<meta property="og:url" content="http://akhilsnair1047.github.io/Photocomptia"/>
+<meta property="og:image" content="http://akhilsnair1047.github.io/Photocomptia/img/05_image.jpg"/>
+<meta property="og:site_name" content="Photo Competions and Events"/>
+<meta property="og:description" content="Participate in the contest and win amazing goodies and prizes!"/>
+<meta name="SKYPE_TOOLBAR" content="SKYPE_TOOLBAR_PARSER_COMPATIBLE"/>
 
 	<!-- Favicons -->
 	<link rel="apple-touch-icon" sizes="144x144" href="images/favicons/apple-touch-icon-144x144.png">
@@ -328,10 +336,9 @@ input:-webkit-autofill:active {
              </div>
              <div class="col-lg-6">
                  <div class="form-group">
-                     <label for="lastName" >Last Name</label>
-                     <input type="text" Value="<?echo $rop['location']?>"class="form-profile input" id="lastName" readonly>
-                 </div>
-             </div>
+                     <label for="phone" >Phone</label>
+                     <input type="tel" Value="<?echo $rop['mobno']?>" class="form-profile input" id="phone" readonly>
+                 </div>  </div>
          </div>
          <div class="row">
             <div class="col-lg-6">
@@ -340,17 +347,18 @@ input:-webkit-autofill:active {
                     <input type="email" Value="<?echo $rop['email']?>" class="form-profile input" id="email" readonly>
                 </div>
             </div>
-            <div class="col-lg-6">
-                <div class="form-group">
-                    <label for="phone" >Phone</label>
-                    <input type="tel" Value="<?echo $rop['mobno']?>" class="form-profile input" id="phone" readonly>
+
+
+                <div class="col-lg-6">
+                    <div class="form-group">
+                        <label for="lastName" >location</label>
+                        <input type="text" Value="<?echo $rop['location']?>"class="form-profile input" id="lastName" readonly>
+                    </div>
                 </div>
-            </div>
+
+
         </div>
-        <div class="btn-block text-center">
-            <button type="submit" class="btn">Save Information</button>
-            <div id="validator-contact" class="hidden"></div>
-        </div>
+
 
 
         <br><br>
@@ -387,9 +395,50 @@ input:-webkit-autofill:active {
         <div class="col-12 section__header-wrap">
             <h2 class="title_section title_h1 title_horizontal-line"><span class="reveal reveal_gray">My Entries</span></h2>
          </div>
-         <br>
-         <h6>You have not taken part in any contest.</h6>
+       </br>
 
+
+
+      <?   $slmo = $pdo->query("SELECT * FROM photoreg WHERE personid=".$_SESSION['personid']);
+
+         $row = $slmo->fetch(PDO::FETCH_ASSOC);
+         if($row==true){?>
+           <section class="section section-onescreen section-oneCarousel">
+             <div class="container-flex">
+                 <div class="photo-carousel swiper-container">
+
+                       <!-- Item -->
+<div class="swiper-wrapper">
+
+           <?$p=1;
+             while ( $row = $slmo->fetch(PDO::FETCH_ASSOC) ) {?>
+<div class="swiper-slide photo-carousel__item">
+
+                 <a href="#">
+                 <div class="item__block-description" data-swiper-parallax="-100">
+                     <h2 class="title title__h3"><? echo $p ?></h2>
+                     </div>
+                     <div class="item__block-image" style="background-image: url(<?echo 'contest/'.$row['photolink'] ?>);"></div>
+             </a></div>
+  <!-- Full-width images with number text -->
+
+
+
+<?$p=$p+1; }?></div>
+<div class="swiper-control">
+    <div class="swiper-pagination"></div>
+            <div class="swiper-button-next">NEXT</div>
+            <div class="swiper-button-prev">PREV</div>
+
+</div></div>
+</div></section>
+<div id="wave"></div>
+ <?
+} else{
+      ?>
+
+         <h6>You have not taken part in any contest.</h6>
+<?}?>
      </div>
 
 
@@ -412,7 +461,7 @@ input:-webkit-autofill:active {
 
 
          <br>
-         <h4>Your Coin Balance is <?php echo $result[0]*5;?> <img src="img/photoicon.png"></h4>
+         <h4>Your Coin Balance is <?php echo $result[0];?> <img src="img/photoicon.png"></h4>
          <h6>you can reedem this coin for taking part in new events or you can transfer directly to your bank account.</h6>
 
      </div>
@@ -525,9 +574,10 @@ input:-webkit-autofill:active {
         document.getElementById("defaultOpen").click();
         </script>
 
-	<script src="js/jquery-3.1.1.min.js" type="text/javascript"></script>
-	<script src="js/plugins.js" type="text/javascript"></script>
-    <script src="js/common.js" type="text/javascript"></script>
+        <script src="js/jquery-3.1.1.min.js" type="text/javascript"></script>
+      	<script src="js/plugins.js" type="text/javascript"></script>
+      	<script src="js/siriwave.js" type="text/javascript"></script>
+          <script src="js/common.js" type="text/javascript"></script>
 
 </body>
 
