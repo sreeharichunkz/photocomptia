@@ -92,12 +92,105 @@ $sql = "UPDATE refer_1 SET contest_joined =:rs
    $stmp->execute(array(
       ':rs' => $rs,
        ':ys' => $_SESSION['personid'] ));
-}}
+//updates coin
+if(!isset($_SESSION['coin'])){
+
+
+
+//////////////
+
+  $stkk = $pdo->query("SELECT * FROM coins WHERE person_id =".$rom['refering_person_id']);
+
+  $pom = $stkk->fetch(PDO::FETCH_ASSOC);
+  ///////////////////
+  $_SESSION['coin']=$pom['coin'] +5;
+///////////////////////
+       $sjl =  "UPDATE coins SET coin = :rs
+                WHERE person_id = :ys";
+          $somp = $pdo->prepare($sjl);
+          $somp -> execute(array(
+              ':rs' => $_SESSION['coin'],
+              ':ys' => $rom['refering_person_id'] ));
+}
+} }
+
 }
 else
 {
     $html = "<p>Your payment failed</p>
              <p>{$error}</p>";
+}
+
+
+
+if(isset($_SESSION['payed_with_coin']) == true)
+{
+    $html = "<p>Your payment was successful</p>
+          <p>Your Payment is done with photocoin</p>
+             <p  style='background-color:tomato;'>You will be informed when the contest is live</p>
+                <p >check the contest page <a href='nature_contest.php'>here</a></p>";
+
+             $sql = "UPDATE photoreg SET payment = 'Done'
+                   WHERE photo_id = :yr ";
+             $stmt = $pdo->prepare($sql);
+             $stmt->execute(array(
+
+                 ':yr' => $_SESSION['photo_id'] ));
+////////////////////////////////////////////
+            $sml="INSERT INTO `nature_post` (`text`, `added`) VALUES
+                 (:yr, 0)";
+                    $smt = $pdo->prepare($sml);
+                    $smt->execute(array(
+
+                    ':yr' => '<img src="contest/'.$_SESSION['image_name'].'" width="600"><p>By — '.$_SESSION['username'].'</p>'));
+  /*
+                        $stmt = $pdo->prepare('INSERT INTO nature_post
+                         (text, added, mobno, email,photolink,photo_id) VALUES ( :id, :uname, :mb, :em, :link, :imgid)');
+//////////////////////////////////////////////////////////////////////////////// */
+$stml = $pdo->query("SELECT * FROM signups WHERE personid=".$_SESSION['personid']);
+$row = $stml->fetch(PDO::FETCH_ASSOC);
+
+if(!isset($_SESSION['contest_joined'])){
+                 $_SESSION['contest_joined']=$row['contest_joined'];
+$rs=$_SESSION['contest_joined'] +1;
+
+              $sql = "UPDATE signups SET contest_joined =:rs
+                       WHERE personid = :ys ";
+                 $stmp = $pdo->prepare($sql);
+                 $stmp->execute(array(
+                    ':rs' => $rs,
+                     ':ys' => $_SESSION['personid'] ));
+
+$stkl = $pdo->query("SELECT * FROM refer_1 WHERE refered_person_id=".$_SESSION['personid']);
+$rom = $stkl->fetch(PDO::FETCH_ASSOC);
+if($rom!=false){
+$sql = "UPDATE refer_1 SET contest_joined =:rs
+         WHERE refered_person_id = :ys ";
+   $stmp = $pdo->prepare($sql);
+   $stmp->execute(array(
+      ':rs' => $rs,
+       ':ys' => $_SESSION['personid'] ));
+//updates coin
+if(!isset($_SESSION['coin'])){
+
+
+
+//////////////
+
+  $stkk = $pdo->query("SELECT * FROM coins WHERE person_id =".$rom['refering_person_id']);
+
+  $pom = $stkk->fetch(PDO::FETCH_ASSOC);
+  ///////////////////
+  $_SESSION['coin']=$pom['coin'] +5;
+///////////////////////
+       $sjl =  "UPDATE coins SET coin = :rs
+                WHERE person_id = :ys";
+          $somp = $pdo->prepare($sjl);
+          $somp -> execute(array(
+              ':rs' => $_SESSION['coin'],
+              ':ys' => $rom['refering_person_id'] ));
+}
+} }
 }
 
 ?>
@@ -160,7 +253,6 @@ else
   <center>
 <?echo $html;?>
 </center>
-
 
 
 

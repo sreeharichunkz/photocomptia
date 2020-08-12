@@ -23,6 +23,9 @@ die('<a href=admin.php>signup to continue</a>');
 <a href="adminpanel2.php">Message from User</a></br>
 <a href="admin_like.php">Like Editing</a></br>
 <a href="adminphotoreg.php">contest registrations</a></br>
+<a href="adfrgpsw.php">Forget password</a></br>
+<a href="adcoin.php">Coins</a></br>
+
 
 
 

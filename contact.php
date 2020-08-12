@@ -210,6 +210,7 @@ echo   $_SESSION['mobno'];
 						        <textarea class="form-control input" name="message" id="message" rows="3" required data-error="Please, enter message."></textarea>
 						    </div>
 					        <div class="btn-block text-center">
+                    <? echo $_SESSION['mobno']; ?>
 							    <button type="submit" class="btn" name="sndmessage" >Send Message</button>
 							    <div id="validator-contact" class="hidden"></div>
 						    </div>

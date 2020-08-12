@@ -13,6 +13,37 @@ if (!isset($_SESSION['personid']) || strlen($_SESSION['personid']) < 1 ) {
   $_SESSION['error']="Sign in to continue to that page";
  header("Location: signin.php?page=register.php");
 }
+?>
+<style>
+#btns2{
+
+  pointer-events: none;
+cursor: default;
+}</style>
+
+<?
+if(isset($_POST['pay_with_coin'])){
+
+$_SESSION['payed_with_coin'] ="User payed with coin";
+$stkk = $pdo->query("SELECT * FROM coins WHERE person_id =".$_SESSION['personid']);
+
+$pom = $stkk->fetch(PDO::FETCH_ASSOC);
+///////////////////
+$_SESSION['coin']=$pom['coin'] -20;
+///////////////////////
+     $sjl =  "UPDATE coins SET coin = :rs
+              WHERE person_id = :ys";
+        $somp = $pdo->prepare($sjl);
+        $somp -> execute(array(
+            ':rs' => $_SESSION['coin'],
+            ':ys' => $_SESSION['personid'] ));
+               header("Location: verify.php");
+}
+
+
+
+
+
 
 do{
 $permitted_chars = '0123456789abcdefghijklmnopqrstuvwxyz';
@@ -65,7 +96,7 @@ $_SESSION['image_name']=$imgname;
                ':link' => $imgname)
            );
 
-
+    $_SESSION['success']="Your Photo is uploaded successfully Pay to continue Or reupload if needed";
    }else{
       echo $errors;
    }
@@ -222,9 +253,11 @@ $json = json_encode($data);
        unset($_SESSION['failure']);
    }
 
-if(isset($imgname) && !isset($_SESSION['failure'])) {
-           echo('<p style="color: green;">'.'File submitted successfully Pay to continue'."</p>\n");
-          }?>
+   if ( isset($_SESSION['success']) && !isset($_SESSION['failure'])) {
+       echo('<p style="color: green;">'.htmlentities($_SESSION['success'])."</p>\n");
+       unset($_SESSION['success']);
+   }?>
+
 
 		<h2>Register Here -</h2> <br>
 
@@ -246,7 +279,7 @@ if(isset($imgname) && !isset($_SESSION['failure'])) {
   <form action="" method="POST" enctype="multipart/form-data">
     <center>
      <input type="file" name="image" /></br><center>
-     <input type="checkbox"  required class="largerCheckbox"><h7> By clicking on this you will agree to our <a href="#">Terms and conditions.</a> </h7>
+     <input type="checkbox"  required class="largerCheckbox"><h7> By clicking on this you will agree to our <a href="terms.html">Terms and conditions.</a> </h7>
  <?
  $stmp = $pdo->prepare('SELECT * FROM photoreg WHERE photo_id = :id');
 
@@ -260,9 +293,25 @@ if(isset($imgname) && !isset($_SESSION['failure'])) {
 
  </form></center></br>
 <center>
- <div class="pay">
+
   <?if(isset($imgname)) {
-              require("checkout/{$checkout}.php");
+    $stkk = $pdo->query("SELECT * FROM coins WHERE person_id =".$_SESSION['personid']);
+
+    $pom = $stkk->fetch(PDO::FETCH_ASSOC);
+if($pom['coin'] >=11){?>
+  <form method="post">
+  <button type="submit" class="btn" id="btns" name="pay_with_coin" >Pay with 20<img src="img/photoicon.png"></button></form></br>
+<?}else{?>
+  <form method="post">
+  <button type="submit" class="btn" id="btns2" name="pays2" >20<img src="img/photoicon.png"></br>
+  Sry you dont have enough coin</button></form></br>
+<?}
+
+    ?>
+<p>OR PAY WITH RS 10</P>
+ <div class="pay">
+
+            <?  require("checkout/{$checkout}.php");
             }
 
 

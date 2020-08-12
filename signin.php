@@ -138,7 +138,184 @@ else {
 }
 
 
-}
+input[type='text'], input[type='email'], input[type='password'], input[type='datetime'], input[type='date'], input[type='month'], input[type='time'], input[type='week'], input[type='search'], input[type='tel'], textarea,
+ textarea.form-profile {
+   background-color: #111111;
+   border: 1px solid #fff;
+   border-radius: 0;
+   box-shadow: none;
+   color: #fff;
+   font-weight: 300;
+   height: 66px;
+   width: 500px;
+   letter-spacing: .05rem;
+   padding-left: 30px;
+   padding-right: 30px;
+   position: relative;
+   z-index: 2;
+   -webkit-appearance: none;
+   -moz-appearance: none;
+   appearance: none;
+ }
+ @media only screen and (max-width: 580px) {
+   input[type='text'], input[type='email'], input[type='password'], input[type='datetime'], input[type='date'], input[type='month'], input[type='time'], input[type='week'], input[type='search'], input[type='tel'], textarea,
+   textarea.form-profile {
+     font-size: .86rem;
+     width: 300px;
+     height: 46px;
+     padding-left: 15px;
+     padding-right: 15px;
+   }
+ }
+ @media only screen and (min-width: 991px) {
+   input[type='text'], input[type='email'], input[type='password'], input[type='datetime'], input[type='date'], input[type='month'], input[type='time'], input[type='week'], input[type='search'], input[type='tel'], textarea,
+   textarea.form-profile {
+
+     width: 450px;
+
+
+   }
+ }
+
+ input[type='text']:focus, input[type='email']:focus, input[type='password']:focus, input[type='datetime']:focus, input[type='date']:focus, input[type='month']:focus, input[type='time']:focus, input[type='week']:focus, input[type='search']:focus, input[type='tel']:focus, textarea:focus,
+ textarea.form-profile:focus {
+   background-color: #111111;
+   border-color: #fff;
+   box-shadow: none;
+   color: #fff;
+   outline: none;
+ }
+
+ input._big {
+   font-size: .86rem;
+   height: 76px;
+ }
+ @media only screen and (max-width: 580px) {
+   input._big {
+     height: 46px;
+   }
+ }
+
+ textarea,
+ textarea.form-profile {
+   padding-top: 30px;
+   padding-bottom: 30px;
+   -ms-overflow-y: hidden !important;
+   resize: none;
+ }
+ @media only screen and (max-width: 580px) {
+   textarea,
+   textarea.form-profile {
+     padding-top: 15px;
+     padding-bottom: 15px;
+   }
+ }
+
+ .form-group {
+   margin-bottom: 40px;
+   position: relative;
+ }
+ @media only screen and (max-width: 580px) {
+   .form-group {
+     margin-bottom: 20px;
+   }
+ }
+
+ .has-danger .form-profile {
+   border-color: #5328fe;
+   box-shadow: none;
+ }
+ .has-danger .form-profile:focus {
+   border-color: #5328fe;
+   box-shadow: none;
+ }
+ .has-danger .subscribe-form__inner .btn-subscribe {
+   border-left: 1px solid #5328fe;
+ }
+
+ #validator-subscribe,
+ .validation-success,
+ .validation-danger {
+   font-size: .86rem;
+   letter-spacing: .2rem;
+   padding-top: 15px;
+   text-align: center;
+ }
+ @media only screen and (max-width: 580px) {
+   #validator-subscribe,
+   .validation-success,
+   .validation-danger {
+     padding-top: 10px;
+   }
+ }
+
+ .validation-success {
+   color: #fff;
+ }
+
+ .validation-danger {
+   color: #fff;
+ }
+ input:read-only {
+   background-color:#111111;
+ }
+ ::placeholder,
+ .form-profile::placeholder {
+   color: #fff;
+   transition: all 0.3s cubic-bezier(0.7, 0, 0.3, 1);
+ }
+
+ :-ms-input-placeholder,
+ .form-profile:-ms-input-placeholder {
+   color: #fff;
+   opacity: 1;
+   transition: all 0.3s cubic-bezier(0.7, 0, 0.3, 1);
+ }
+
+ :focus::placeholder {
+   color: transparent;
+ }
+
+ :focus:-ms-input-placeholder {
+   color: transparent;
+ }
+
+ input:-webkit-autofill,
+ input:-webkit-autofill:hover,
+ input:-webkit-autofill:focus,
+ input:-webkit-autofill:active {
+   transition: background-color 5000s ease-in-out 0s;
+   -webkit-text-fill-color: #fff !important;
+ }
+
+ .label {
+   display: block;
+   font-weight: 500;
+   letter-spacing: .1rem;
+   padding-left: 30px;
+   position: relative;
+   text-transform: uppercase;
+   transform: translateY(20px);
+   transition: all 0.6s 0s cubic-bezier(0.7, 0, 0.3, 1);
+   z-index: 3;
+   pointer-events: none;
+   position: absolute;
+ }
+ @media only screen and (max-width: 580px) {
+   .label {
+     padding-left: 15px;
+     transform: translateY(10px);
+   }
+ }
+
+ .is-completed .label {
+   transform: translateY(-32px);
+ }
+ @media only screen and (max-width: 580px) {
+   .is-completed .label {
+     transform: translateY(-28px);
+   }
+ }
 </style>
  </head>
 
@@ -169,7 +346,7 @@ else {
        </div>
  </nav>
 
-    <center> <h1></br></br></br>Sign In</h1></center>
+ <section class="section section-works section_top-space-330 section_first">
 </br><center>
      <?php
      if ( isset($_SESSION['error']) ) {
@@ -186,36 +363,62 @@ else {
      }
      ?>
 </center>
-<center>
 
+<div class="container">
+    <div class="row">
+        <div class="col-lg-4">
+
+            <center><h1>Sign In</h1> </center>
+        </div>
+
+        <div class="col-lg-8">
+   <div class="row">
+    <div class="col-lg-8">
   <form method="post">
-    <div class="signin_box">
-    <label for="uname"><b>Email/Mobile no</b></label>
-    <input type="text" placeholder="Enter Email/Mobile number" name="uname" id="psw" title="Enter mobile no with country code example:919876543210" required>
+    <div class="form_group">
+    <label for="uname"><b>Email/Mobile no</b></label><br>
+
+    <input type="text" placeholder="Enter Email/Mobile number" name="uname"class="form-profile input" id="psw" title="Enter mobile no with country code example:919876543210" required>
 
     <div id="message">
 
-      <p id="letter"<b>Registered Mobile number with country code  without space in between eg:919876543210  (dont use "+" )</b></p>
+      <p id="letter"><b>Registered Mobile number with country code  without space in between eg:919876543210  (dont use "+" )</b></p>
       <p id="capital" ><b>Or Valid registered email </b></p>
 
     </div>
 </div>
-    <div class="signin_box">
-    <label for="psw"><b>Password &nbsp&nbsp&nbsp&nbsp&nbsp</b>&nbsp&nbsp&nbsp&nbsp</label>
-    <input type="text" placeholder="Enter Password" name="psw" >
 </div>
-  &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp  <button type="submit" name="signin" >Login</button>
-      <button type="button" class="cancelbtn">Cancel</button>
+</div>
+<div class="row">
+<div class="col-lg-4">
+    <div class="form_group">
+    <label for="psw"><b>Password</b></label><br>
+    <input type="text" placeholder="Enter Password" name="psw"class="form-profile input" >
+</div>
+</div>
+</div>
+</div>
+</div>
 
-  </div></br>
+<br>
+<center >
+  &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+    <button type="submit" class="btn" name="signin" >Login</button>
+      <button type="button" class="btn" style="margin-left: 50px;">Cancel</button>
+
+  </br>
 </br>
-  &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<button type="submit" name="frgpsw" >FORGOT PASSWORD</button>
-</form>
-<div id="sign-out">
-&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<a href="signup.php">Signup</a></div>
+  &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<button type="submit" name="frgpsw"class="btn">FORGOT PASSWORD</button>
+</form><br>
+<br>
+<h6>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbspOR</h6>
+<br>
+&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<a href="signup.php" class="btn">Signup</a></div>
+
+
 </center>
 
-
+</section>
 <footer class="footer">
 
   <div class="container">

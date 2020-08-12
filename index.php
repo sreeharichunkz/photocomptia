@@ -648,7 +648,7 @@ require_once('pdo.php');
 				    </li>
 				    <li>
 
-						    <li><a href="refer.pho">Refer And Earn</a></li>
+						    <li><a href="refer.php">Refer And Earn</a></li>
 					<!--    <li><a href="about_onescreen.html">Our Team</a></li>    -->
 
 					</li>
