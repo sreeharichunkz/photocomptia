@@ -289,7 +289,7 @@ $json = json_encode($data);
  if(isset($imgname)) {?>
 
 <img src ='<?echo ""."contest/".$rop['photolink']."" ?>' width="100" height="100"> <?}?>
-   </br></br> <input  type="submit"/>
+</br></br> <input   type="submit"/>
 
  </form></center></br>
 <center>
@@ -298,7 +298,7 @@ $json = json_encode($data);
     $stkk = $pdo->query("SELECT * FROM coins WHERE person_id =".$_SESSION['personid']);
 
     $pom = $stkk->fetch(PDO::FETCH_ASSOC);
-if($pom['coin'] >=11){?>
+if($pom['coin'] >=20){?>
   <form method="post">
   <button type="submit" class="btn" id="btns" name="pay_with_coin" >Pay with 20<img src="img/photoicon.png"></button></form></br>
 <?}else{?>

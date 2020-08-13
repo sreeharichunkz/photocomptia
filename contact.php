@@ -30,7 +30,7 @@ if(isset($_POST['sndmessage'])){
 
 
 }
-echo   $_SESSION['mobno'];
+
 //  if(isset($_POST['verify'])){
  ?>
 
@@ -100,7 +100,7 @@ echo   $_SESSION['mobno'];
 	<section class="section section-contact section-onescreen">
 	    <div class="container">
 		    <div class="row">
-			    <div class="col-lg-12">
+			    <div class="col-lg-12"></br></br>
 				    <h2 class="title__section title__h1 title_horizontal-line"><span class="reveal reveal_gray">Let’s chat.</span></h2>
 			    </div>
 			</div>
@@ -203,14 +203,14 @@ echo   $_SESSION['mobno'];
 	    <button id="close-popup" class="popup__btn-close" aria-label="Close">close</button>
 	    <div class="popup-inner">
 		    <form method="post" id="contact-forms" data-toggle="validator">
-			    <div class="container container_md">
+			    <div class="container container_md" >
 
 			        <div class="row">
 
-				        <div class="col-lg-6">
+				        <div class="col-lg-12">
                             <div class="form-group">
 						        <label for="Subject" class="label">Your Subject ..*</label>
-                                <input type="text" class="form-control input" name="subject" id="phone" required data-error="Please, enter the subject." autocomplete="off">
+                                <input type="text" class="form-control input" name="subject"id="phone" required data-error="Please, enter the subject." autocomplete="off">
 						    </div>
 				        </div>
 			        </div>
@@ -219,9 +219,8 @@ echo   $_SESSION['mobno'];
 					        <div class="form-group">
 						        <label for="message" class="label">Your Message ... *</label>
 						        <textarea class="form-control input" name="message" id="message" rows="3" required data-error="Please, enter message."></textarea>
-						    </div>
+						    </div></div>
 					        <div class="btn-block text-center">
-                    <? echo $_SESSION['mobno']; ?>
 							    <button type="submit" class="btn" name="sndmessage" >Send Message</button>
 							    <div id="validator-contact" class="hidden"></div>
 						    </div>

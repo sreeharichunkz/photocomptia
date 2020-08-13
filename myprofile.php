@@ -278,9 +278,9 @@ input:-webkit-autofill:active {
 	</div>
 
     <!-- Header -->
-	<nav class="navbar animated slideInDown">
-        <div class="navbar-left">
-            <a href="index.html">
+    <nav class="navbar animated slideInDown" style=" background-color: #111111;  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.9);" >
+          <div class="navbar-left">
+              <a href="index.php">
                 <img class="logotype" src="img/logo1.png" alt="logo">
 			</a>
         </div>
@@ -392,10 +392,6 @@ input:-webkit-autofill:active {
    <div id="Event" class="tabcontent">
 
 
-        <div class="col-12 section__header-wrap">
-            <h2 class="title_section title_h1 title_horizontal-line"><span class="reveal reveal_gray">My Entries</span></h2>
-         </div>
-       </br>
 
 
 
@@ -403,38 +399,48 @@ input:-webkit-autofill:active {
 
          $row = $slmo->fetch(PDO::FETCH_ASSOC);
          if($row==true){?>
-           <section class="section section-onescreen section-oneCarousel">
-             <div class="container-flex">
-                 <div class="photo-carousel swiper-container">
 
-                       <!-- Item -->
-<div class="swiper-wrapper">
 
-           <?$p=1;
+     <section class="section news-singel section_first">
+ 	    <div class="container">
+ 		    <!-- Post -->
+ 			<article class="item-news item-news__main">
+     <div class="container">
+         <div class="col-12 section__header-wrap">
+             <h2 class="title_section title_h1 title_horizontal-line"><span class="reveal reveal_gray">My Entries</span></h2>
+          </div>
+
+          <br>
+          <h6>Your photos.</h6><br>
+      </div>
+
+
+      <div class="item-news__paragraph">
+      <div class="post-gallery">
+           <?
              while ( $row = $slmo->fetch(PDO::FETCH_ASSOC) ) {?>
-<div class="swiper-slide photo-carousel__item">
-
-                 <a href="#">
-                 <div class="item__block-description" data-swiper-parallax="-100">
-                     <h2 class="title title__h3"><? echo $p ?></h2>
-                     </div>
-                     <div class="item__block-image" style="background-image: url(<?echo 'contest/'.$row['photolink'] ?>);"></div>
-             </a></div>
-  <!-- Full-width images with number text -->
+               <div class="post-gallery__item">
+                       <img class="image__news" src="<?echo 'contest/'.$row['photolink']?>" style="width: 400px;" data-zoomable alt="Event ">
+                    </div>
 
 
 
-<?$p=$p+1; }?></div>
-<div class="swiper-control">
-    <div class="swiper-pagination"></div>
-            <div class="swiper-button-next">NEXT</div>
-            <div class="swiper-button-prev">PREV</div>
 
-</div></div>
-</div></section>
-<div id="wave"></div>
+
  <?
-} else{
+} ?>
+</div>
+</div>
+    </article>
+  </div>
+  </section>
+
+
+
+
+<?
+}
+else{
       ?>
 
          <h6>You have not taken part in any contest.</h6>
@@ -576,7 +582,7 @@ input:-webkit-autofill:active {
 
         <script src="js/jquery-3.1.1.min.js" type="text/javascript"></script>
       	<script src="js/plugins.js" type="text/javascript"></script>
-      	<script src="js/siriwave.js" type="text/javascript"></script>
+
           <script src="js/common.js" type="text/javascript"></script>
 
 </body>

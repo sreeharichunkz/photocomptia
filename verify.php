@@ -94,6 +94,7 @@ $sql = "UPDATE refer_1 SET contest_joined =:rs
        ':ys' => $_SESSION['personid'] ));
 //updates coin
 if(!isset($_SESSION['coin'])){
+  if($rs==1){
 
 
 
@@ -111,7 +112,7 @@ if(!isset($_SESSION['coin'])){
           $somp -> execute(array(
               ':rs' => $_SESSION['coin'],
               ':ys' => $rom['refering_person_id'] ));
-}
+}}
 } }
 
 }
@@ -130,7 +131,7 @@ if(isset($_SESSION['payed_with_coin']) == true)
              <p  style='background-color:tomato;'>You will be informed when the contest is live</p>
                 <p >check the contest page <a href='nature_contest.php'>here</a></p>";
 
-             $sql = "UPDATE photoreg SET payment = 'Done'
+             $sql = "UPDATE photoreg SET payment = 'Payed with coin'
                    WHERE photo_id = :yr ";
              $stmt = $pdo->prepare($sql);
              $stmt->execute(array(
@@ -172,7 +173,7 @@ $sql = "UPDATE refer_1 SET contest_joined =:rs
        ':ys' => $_SESSION['personid'] ));
 //updates coin
 if(!isset($_SESSION['coin'])){
-
+  if($rs==1){
 
 
 //////////////
@@ -190,7 +191,7 @@ if(!isset($_SESSION['coin'])){
               ':rs' => $_SESSION['coin'],
               ':ys' => $rom['refering_person_id'] ));
 }
-} }
+} }}
 }
 
 ?>

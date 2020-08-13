@@ -364,11 +364,10 @@ input[type='text'], input[type='email'], input[type='password'], input[type='dat
      ?>
 </center>
 
-<div class="container">
+<div class="container"><center>
     <div class="row">
         <div class="col-lg-4">
 
-            <center><h1>Sign In</h1> </center>
         </div>
 
         <div class="col-lg-8">
@@ -376,7 +375,7 @@ input[type='text'], input[type='email'], input[type='password'], input[type='dat
     <div class="col-lg-8">
   <form method="post">
     <div class="form_group">
-    <label for="uname"><b>Email/Mobile no</b></label><br>
+  <center>  <label for="uname"><b>Email/Mobile no</b></label><br></center>
 
     <input type="text" placeholder="Enter Email/Mobile number" name="uname"class="form-profile input" id="psw" title="Enter mobile no with country code example:919876543210" required>
 
@@ -392,7 +391,7 @@ input[type='text'], input[type='email'], input[type='password'], input[type='dat
 <div class="row">
 <div class="col-lg-4">
     <div class="form_group">
-    <label for="psw"><b>Password</b></label><br>
+<center>  <label for="psw"><b>Password</b></label><br></center>
     <input type="password" placeholder="Enter Password" name="psw"class="form-profile input" >
 </div>
 </div>
@@ -402,18 +401,18 @@ input[type='text'], input[type='email'], input[type='password'], input[type='dat
 
 <br>
 <center >
-  &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+
     <button type="submit" class="btn" name="signin" >Login</button>
       <button type="button" class="btn" style="margin-left: 50px;">Cancel</button>
 
   </br>
 </br>
-  &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<button type="submit" name="frgpsw"class="btn">FORGOT PASSWORD</button>
+<button type="submit" name="frgpsw"class="btn">FORGOT PASSWORD</button>
 </form><br>
 <br>
-<h6>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbspOR</h6>
+<h6> OR</h6>
 <br>
-&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<a href="signup.php" class="btn">Signup</a></div>
+<a href="signup.php" class="btn">Signup</a></center></div>
 
 
 </center>

@@ -71,7 +71,7 @@ $j+=1;
 
 
 
-  $stmt = $pdo->query("SELECT * FROM coins");
+  $stmt = $pdo->query("SELECT * FROM coins ORDER BY coin DESC;");
   $i=1;
   while ( $row = $stmt->fetch(PDO::FETCH_ASSOC) ) {
 

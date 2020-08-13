@@ -278,7 +278,7 @@ require_once('pdo.php');
 			    <!-- /Item -->
 
 			    <!-- Item -->
-			    <div class="swiper-slide pricing-grid__item pricing-grid__item_two" style="background-image: url(img/image_pricing_02.jpg)">
+			    <a href="nature_contest.php"><div class="swiper-slide pricing-grid__item pricing-grid__item_two" style="background-image: url(img/image_pricing_02.jpg)">
 				    <h4 class="title__h4">Nature Photography.</h4>
 				    <br><br><br><br><br><br><br>
 
@@ -298,9 +298,9 @@ require_once('pdo.php');
 				    <footer class="pricing-footer">
 					    <div class="price">₹10</div>
 
-					    <a href="next_contest.html" class="btn-link btn-link_right">Explore</a>
+					    <a href="nature_contest.php" class="btn-link btn-link_right">Explore</a>
 				    </footer>
-			    </div>
+			    </div></a>
 			    <!-- /Item -->
 
 			    <!-- Item --
@@ -334,7 +334,7 @@ require_once('pdo.php');
 			    <!-- /Item -->
 
                 <!-- Item -->
-			    <div class="swiper-slide pricing-grid__item pricing-grid__item_four" style="background-image: url(img/image_pricing_05.jpg)">
+			   <a href="coming_soon.html"> <div class="swiper-slide pricing-grid__item pricing-grid__item_four" style="background-image: url(img/image_pricing_05.jpg)">
 				   <h4 class="title__h4">Urban Photography.</h4>
 				   <br><br><br><br><br>
 				   <br><br><br><br><br>
@@ -343,7 +343,7 @@ require_once('pdo.php');
 					    <div class="price">Coming Soon.</div>
 					    <a href="coming_soon.html" class="btn-link btn-link_right">Explore</a>
 				    </footer>
-			    </div>
+			    </div></a>
 				<!-- /Item -->
 
 		    </div>

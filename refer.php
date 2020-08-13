@@ -129,20 +129,44 @@ error_reporting(E_ALL);
   </div>
 <br><br>
 
-    <span><img src="img/mail_icon.png" style="width: 75px;"/></span>
+<div class="row">
+<div class="col-md-7 col-lg-1">
+  <span><img src="img/mail_icon.png" style="width: 75px; "/></span>
+</div>
+<div class="col-md-7 col-lg-7">
+  <br><b> You can refer a friend to join a contest using refferal code via mail, whatsapp etc.</b>
+<br><br><br>
+</div>
+  </div>
+<div class="row">
+  <div class="col-md-7 col-lg-1">
+  <span><img src="img/coin.png" style="width: 75px; "/></span>
+    </div>
+    <div class="col-md-7 col-lg-7">
+  <br><b>On their first ever participation you get 5 photocoin reward.</b>
+     </div>
+</div>
+<br><br>
+<div class="row">
+  <div class="col-md-7 col-lg-1">
+<span><img src="img/bag.png" style="width: 75px;  "/></span>
+  </div>
+  <div class="col-md-7 col-lg-7">
+   <br><b>Use these Coin to join a contest or use it in Bazar to get amazing deals.</b>
+</div>
+</div>
+<br><br><br><br>
 
-    <span> You can refer a friend to join a contest using refferal code via mail, whatsapp etc.</span>
-    <br><br><br>
-    <span><img src="img/coin.png" style="width: 75px;"/></span>
 
-    <span> On their first ever participation you get 5 photocoin reward.</span>
-    <br><br><br><br>
-  <?  $stmt = $pdo->query("SELECT * FROM refer_1 WHERE refering_person_id=".$_SESSION['personid']);
-  $row = $stmt->fetch(PDO::FETCH_ASSOC);
-  if($row ==false){?>
+  <?  $stot = $pdo->query("SELECT * FROM refer_1 WHERE refering_person_id=".$_SESSION['personid']);
+  $roi = $stot->fetch(PDO::FETCH_ASSOC);
+  if($roi ==false){?>
     <h6>You have not reffered yet. Refer using the above code to get coins.</h6>
-</br><?} else{?><center><div class="refer_table">
-<?
+</br><?} else{?>  <center>
+<h2>The People refered by you</h2></br></br>
+
+<div class="refer_table">
+<? $stot = $pdo->query("SELECT * FROM refer_1 WHERE refering_person_id=".$_SESSION['personid']);
 $i=1;
 echo('<table border="5">'."\n");
 echo "<tr><td>";
@@ -153,13 +177,13 @@ echo("</td><td>");
 echo("<b>Contest joined</b>");
 echo("</td><td>");
 
-while ( $row = $stmt->fetch(PDO::FETCH_ASSOC) ) {
+while ( $roi = $stot->fetch(PDO::FETCH_ASSOC) ) {
 echo ("<tr><td>");
 echo $i;
 echo("</td><td>");
-echo(htmlentities($row['refered_person']));
+echo(htmlentities($roi['refered_person']));
 echo("</td><td>");
-echo("<center>".$row['contest_joined']."</center>");
+echo("<center>".$roi['contest_joined']."</center>");
 
 $i++;
 

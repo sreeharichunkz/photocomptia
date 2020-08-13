@@ -21,6 +21,7 @@ cursor: default;
   background-color: yellow;
 }
 
+
   </style><?
  }
 }
@@ -72,6 +73,11 @@ if(isset($_POST['forest_contest'])) {
     <!-- Styles -->
 	<link rel="stylesheet" type="text/css" href="style/style.css"/>
 	<style>
+  #btns2{
+
+    pointer-events: none;
+  cursor: default;
+  }
         .redeem{
             margin-top: 110px;
 
@@ -151,8 +157,25 @@ if(isset($_POST['forest_contest'])) {
 <h4>Get Amazon gift Card worth ₹1000 for free</h4>
 <h6>Redeem now with 599 coins</h6>
 <div class="redeem">
-<div class="btn-block text-center"><form method="post">
-    <button type="submit" class="btn" id="btns" name="amazon_voucher" >Redeem Now</button></form>
+<div class="btn-block text-center">
+  <?
+if(isset($_SESSION['personid'])){
+   $stkk = $pdo->query("SELECT * FROM coins WHERE person_id =".$_SESSION['personid']);
+
+    $pom = $stkk->fetch(PDO::FETCH_ASSOC);
+
+  if($pom['coin'] >=599){?>
+  <form method="post">
+  <button type="submit" class="btn" id="btns" name="pay_with_coin" >Pay with 599<img src="img/photoicon.png"></button></form></br>
+  <?}else{?>
+  <form method="post">
+  <button type="submit" class="btn" id="btns2" color="green" name="pays2" >599<img src="img/photoicon.png"></br>
+  Sry you dont have enough coin</button></form></br>
+  <?}}  else{?>
+
+  <form method="post">
+    <button type="submit" class="btn" id="btns" name="amazon_voucher" >Redeem Now</button>
+  </form><?}?>
     <div id="validator-contact" class="hidden"></div>
 </div>
 </div>
