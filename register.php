@@ -401,8 +401,7 @@ if($pom['coin'] >=20){?>
   					</li>
 
   				</ul>
-  			</li>
-  						    <li><a href="about.php">About Us</a></li>
+  	
   					<!--    <li><a href="about_onescreen.html">Our Team</a></li>    -->
 
   					</li>

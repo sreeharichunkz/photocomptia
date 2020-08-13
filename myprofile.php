@@ -520,31 +520,43 @@ else{
 	</section>
 
 	<!-- Overlay Menu -->
-	<div class="popup popup__menu">
-	    <div class="popup-inner">
-            <div class="dl-menu__wrap dl-menuwrapper">
-                <ul class="dl-menu dl-menuopen">
-					<li>
-					    <a href="index.php">Home</a>
-				    </li>
-				    <li>
+  <div class="popup popup__menu">
+        <div class="popup-inner">
+              <div class="dl-menu__wrap dl-menuwrapper">
+                  <ul class="dl-menu dl-menuopen">
+            <li>
+                <a href="index.php">Home</a>
+            </li>
+        <li>
+          <a href="#">Profile <i class="fa fa-angle-down" aria-hidden="true"></i></a>
+          <ul class="dl-submenu">
+            <li>
+                <a href="myprofile.php">My Profile</i></a>
+            </li>
+            <li>
+                <a href="refer.php">My Referals</a>
+            </li>
+            <li>
+              <a href="bazar.php">bazar</a>
+            </li>
 
-						    <li><a href="refer.php">Refer And Earn</a></li>
-					<!--    <li><a href="about_onescreen.html">Our Team</a></li>    -->
+          </ul>
+      
+            <!--    <li><a href="about_onescreen.html">Our Team</a></li>    -->
 
-					</li>
-
-					<li>
-						<a href="next_contest.php">Reg:Next Contest</a>
-					</li>
-					<li>
-					    <a href="contest_page.php">Live Contest </a>
-				    </li>
-		   		<!--	<li>
-					    <a href="blog.html">Our Services</i></a>
-				    </li>    -->
-					<li><a href="contact.php">Contact Us</a></li>
-
+            </li>
+          <li>
+            <a href="#">Contest <i class="fa fa-angle-down" aria-hidden="true"></i></a>
+          <ul class="dl-submenu">
+            <li>
+              <a href="next_contest.php"> Current Events</a>
+            </li>
+            <li>
+                <a href="nature_contest.php">Event Gallery </a>
+            </li>
+          </ul>
+          </li>
+            <li><a href="contact.php">Contact Us</a></li>
 				<!--    <li>
 					    <a href="#">Socials <i class="fa fa-angle-down" aria-hidden="true"></i></a>
 					    <ul class="dl-submenu">

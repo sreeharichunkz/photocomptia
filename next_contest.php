@@ -5,87 +5,8 @@ ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
 
 session_start();
-
-require('config.php');
-require('razorpay-php/Razorpay.php');
 require_once('pdo.php');
 
-if(isset($_POST['register'])){
-
-    if(isset($_POST['photolink']) && strlen($_POST['photolink']) > 0){
-         $link=$_POST['photolink'];
-         $mbno=$_SESSION['mobno'];
-         $email=$_SESSION['email'];
-         $name=$_SESSION['username'];
-
-                    $stmt = $pdo->prepare('INSERT INTO photoreg
-                     (personid, name, mobno, email,photolink) VALUES ( :id, :uname, :mb, :em, :link)');
-                     $stmt->execute(array(
-                            ':id' => $_SESSION['personid'],
-                             ':uname' => $name,
-                             ':mb' => $mbno,
-                             ':em' => $email,
-                             ':link' => $link)
-                         );
-
-                     $_SESSION['success']="Record added";
-                     header("Location: signin.php");
-}
-}
-do{
-$permitted_chars = '0123456789abcdefghijklmnopqrstuvwxyz';
-// Output: 54esmdr0qf
-$photo_id = substr(str_shuffle($permitted_chars), 0, 4);
-$stmp = $pdo->prepare('SELECT * FROM photoreg WHERE photo_id = :em');
-
-$stmp->execute(array( ':em' => $photo_id ));
-
-$rop = $stmp->fetch(PDO::FETCH_ASSOC);
-
-}while($rop== true);
-$_SESSION['photo_id']=$photo_id;
-if(isset($_FILES['image'])){
-   $errors= array();
-   $file_name = $_FILES['image']['name'];
-   $file_size =$_FILES['image']['size'];
-   $file_tmp =$_FILES['image']['tmp_name'];
-   $file_type=$_FILES['image']['type'];
-   $file_ext=strtolower(end(explode('.',$_FILES['image']['name'])));
- $name=$_SESSION['username'];
-   $extensions= array("jpeg","jpg","png");
-$imgname= $name.$photo_id.".".$file_ext;
-   if(in_array($file_ext,$extensions)=== false){
-      $errors[]="extension not allowed, please choose a JPEG or PNG file.";
-   }
-
-   if($file_size > 2097152){
-      $errors[]='File size must be excately 2 MB';
-   }
-
-
-   if(empty($errors)==true){
-
-     $mbno=$_SESSION['mobno'];
-     $email=$_SESSION['email'];
-     $name=$_SESSION['username'];
-      move_uploaded_file($file_tmp,"contest/".$imgname);
-      echo "Success";
-      $stmt = $pdo->prepare('INSERT INTO photoreg
-       (personid, name, mobno, email,photolink,photo_id) VALUES ( :id, :uname, :mb, :em, :link, :imgid)');
-       $stmt->execute(array(
-              ':id' => $_SESSION['personid'],
-               ':uname' => $name,
-               ':mb' => $mbno,
-               ':em' => $email,
-               ':imgid' => $photo_id,
-               ':link' => $imgname)
-           );
-
-
-   }else{
-      print_r($errors);
-   }
-}
 // Create the Razorpay Order
 
 ?>
@@ -172,15 +93,15 @@ $imgname= $name.$photo_id.".".$file_ext;
 						</blockquote>
 						<h2>How to Participate — </h2>
 
-						<p>You have to upload the image below as " Google photos " or " Google Drive " link. This is done to retain the image quality. In the same link you have to upload screenshot of the payment.  </p>
-						<p>The image will be processed and then it will be uploaded. Please be honest and upload photo that is taken by you only. If found that you are going against the terms, then you will be disqualifed. Don't worrier about the payment we will return back.</p>
-						<p>* please note — You have to upload both Photograph and payment screenshot in the link and the you have to sumbit. If you have any doubts contact as on the below mentioned mail id. </p>
+						<p>You have to upload the image </p>
+						<p>*Pay Rs10 using your prefered payment method </p>
+            <p>*Your Photo will be live then</p>
 				<!--		<p>You have to upload the image below as " Google photos " or " Google Drive " link. This is done to retain the image quality. In the same link you have to upload screenshot of the payment.  </p>
 						<p>The image will be processed and then it will be uploaded. Please be honest and upload photo that is taken by you only. If found that you are going against the terms, then you will be disqualifed. Don't worrier about the payment we will return back.</p>
 						<p>* please note — You have to upload both Photograph and payment screenshot in the link and the you have to sumbit. If you have any doubts contact as on the below mentioned mail id. </p>
 				-->
 						<br>
-						<h4>Payment to be done on UPI ID: photocomptia@ybl</h4>
+
 						<br>
 						<br>
 

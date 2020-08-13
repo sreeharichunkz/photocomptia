@@ -274,7 +274,29 @@ require_once('pdo.php');
 
 			</footer>
 			    </div>
+          <a href="contest_page.php"><div class="swiper-slide pricing-grid__item pricing-grid__item_two" style="background-image: url(img/image_pricing_02.jpg)">
+            <h4 class="title__h4">Fan Contest</h4>
+            <br><br><br><br><br><br><br>
 
+          <!----	<div class="pricing-options">
+              <div class="pricing-options__name">Resolution</div>
+              <div class="pricing-options__included">32 MP</div>
+          </div>
+          -->
+          <div class="pricing-options">
+              <div class="pricing-options__name">Entries Close</div>
+              <div class="pricing-options__included">10/08/2020</div>
+            </div>
+            <div class="pricing-options">
+              <div class="pricing-options__name">Result On</div>
+              <div class="pricing-options__included">15/08/2020</div>
+            </div>
+            <footer class="pricing-footer">
+              <div class="price">₹10</div>
+
+              <a href="nature_contest.php" class="btn-link btn-link_right">Explore</a>
+            </footer>
+          </div></a>
 			    <!-- /Item -->
 
 			    <!-- Item -->

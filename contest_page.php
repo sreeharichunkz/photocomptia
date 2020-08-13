@@ -187,8 +187,7 @@ if (!isset($_SESSION['personid']) || strlen($_SESSION['personid']) < 1 ) {
             </li>
 
           </ul>
-        </li>
-                  <li><a href="about.php">About Us</a></li>
+  
             <!--    <li><a href="about_onescreen.html">Our Team</a></li>    -->
 
             </li>
